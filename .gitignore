@@ -5,3 +5,4 @@ __pycache__
 *.prm
 *.pth
 kinetics_subset
+*.csv
