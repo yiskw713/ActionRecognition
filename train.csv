@@ -1,0 +1,619 @@
+video,class,class_id,n_frames
+./kinetics_subset/picking fruit/wRhfL1mezec_000028_000038,picking fruit,0,300
+./kinetics_subset/sticking tongue out/MT2KvOC_7ww_000000_000010,sticking tongue out,1,300
+./kinetics_subset/sticking tongue out/aHuhcGqaoBE_000000_000010,sticking tongue out,1,75
+./kinetics_subset/diving cliff/2DwBhMUH-_I_000003_000013,diving cliff,2,249
+./kinetics_subset/tying tie/b0_H_z-RZHw_000087_000097,tying tie,3,240
+./kinetics_subset/tying tie/i1PcVAXtby0_000234_000244,tying tie,3,300
+./kinetics_subset/water skiing/peMyj4GZCZU_000020_000030,water skiing,4,208
+./kinetics_subset/water skiing/t6lEEnLkYSg_000003_000013,water skiing,4,300
+./kinetics_subset/kicking soccer ball/YnE5rYYcmJg_000005_000015,kicking soccer ball,5,300
+./kinetics_subset/sniffing/-1fippPF1oI_000002_000012,sniffing,6,150
+./kinetics_subset/sniffing/BaIQY05Jh3k_000048_000058,sniffing,6,300
+./kinetics_subset/extinguishing fire/luG4n49AdZo_000012_000022,extinguishing fire,7,300
+./kinetics_subset/playing flute/ayoOPaX9lpM_000049_000059,playing flute,8,300
+./kinetics_subset/playing flute/rk0O_Wkq-Dw_000028_000038,playing flute,8,270
+./kinetics_subset/high kick/-toLFfiQnzc_000015_000025,high kick,9,300
+./kinetics_subset/high kick/OlKFeMinFgs_000009_000019,high kick,9,300
+./kinetics_subset/getting a tattoo/YobM3LpfnYo_000052_000062,getting a tattoo,10,300
+./kinetics_subset/petting cat/nP0emhiehsw_000025_000035,petting cat,11,300
+./kinetics_subset/petting cat/q1GijBRBqjE_000203_000213,petting cat,11,300
+./kinetics_subset/smoking hookah/oWoJh5fsHQY_000021_000031,smoking hookah,12,84
+./kinetics_subset/eating ice cream/0W-Enb4ARIw_000026_000036,eating ice cream,13,105
+./kinetics_subset/eating ice cream/ivTBjENMTkY_000036_000046,eating ice cream,13,300
+./kinetics_subset/arm wrestling/MD4RMynkcFQ_000002_000012,arm wrestling,14,165
+./kinetics_subset/arm wrestling/e_Tk_m0nVc8_000021_000031,arm wrestling,14,300
+./kinetics_subset/grooming dog/FDSUOhbkqIU_000060_000070,grooming dog,15,300
+./kinetics_subset/shoveling snow/_UfTcxUZrsI_000123_000133,shoveling snow,16,240
+./kinetics_subset/shoveling snow/Jm3c8QSzJyY_000120_000130,shoveling snow,16,300
+./kinetics_subset/shooting goal (soccer)/-x9S0u1P6KY_000160_000170,shooting goal (soccer),17,300
+./kinetics_subset/bobsledding/79eeiyTzfgk_000042_000052,bobsledding,18,300
+./kinetics_subset/hopscotch/krXyuoD69Lc_000002_000012,hopscotch,19,118
+./kinetics_subset/hopscotch/9gqpyYvwiio_000002_000012,hopscotch,19,300
+./kinetics_subset/playing volleyball/SqnR1sq0iK0_000041_000051,playing volleyball,20,300
+./kinetics_subset/playing paintball/2GjAbN2bdmc_000003_000013,playing paintball,21,300
+./kinetics_subset/playing paintball/STVTpPAIXLc_000058_000068,playing paintball,21,300
+./kinetics_subset/tossing salad/kJkSce1oXpo_000101_000111,tossing salad,22,250
+./kinetics_subset/tossing salad/O92RRR6ykWI_000195_000205,tossing salad,22,150
+./kinetics_subset/giving or receiving award/mtL96cCYMpk_000019_000029,giving or receiving award,23,250
+./kinetics_subset/ice fishing/z6FU6Qkhofs_000076_000086,ice fishing,24,300
+./kinetics_subset/ice fishing/VNulfciEozA_000020_000030,ice fishing,24,146
+./kinetics_subset/ice skating/xUuoMVlroMk_000090_000100,ice skating,25,300
+./kinetics_subset/skiing slalom/yhZCJEr4x1w_000050_000060,skiing slalom,26,300
+./kinetics_subset/skiing slalom/rEOREKZUBPU_000062_000072,skiing slalom,26,300
+./kinetics_subset/washing hands/o6Tx6DWubuQ_000049_000059,washing hands,27,300
+./kinetics_subset/washing hands/TDbf6JycI3Q_000014_000024,washing hands,27,300
+./kinetics_subset/curling hair/txFUJ7yiWCg_000133_000143,curling hair,28,148
+./kinetics_subset/snorkeling/fU9SRLL_jDI_000132_000142,snorkeling,29,300
+./kinetics_subset/snorkeling/FSKfYcZfhBI_000091_000101,snorkeling,29,300
+./kinetics_subset/drawing/5SzpfQioUrA_000002_000012,drawing,30,300
+./kinetics_subset/making bed/ts8xpz5Gfnc_000171_000181,making bed,31,150
+./kinetics_subset/making bed/v1E7FRUo6YU_000164_000174,making bed,31,250
+./kinetics_subset/bartending/N0ZbDTuOlQA_000059_000069,bartending,32,250
+./kinetics_subset/news anchoring/g8Shp9HRTow_000174_000184,news anchoring,33,300
+./kinetics_subset/punching bag/UTNocOpYA5s_000000_000010,punching bag,34,240
+./kinetics_subset/breading or breadcrumbing/OH4Yfkr43tM_000099_000109,breading or breadcrumbing,35,300
+./kinetics_subset/breading or breadcrumbing/urCSwGCTLJ8_000112_000122,breading or breadcrumbing,35,300
+./kinetics_subset/sneezing/hI5poy3ZxR4_000019_000029,sneezing,36,300
+./kinetics_subset/climbing a rope/7voh4t17_GE_000006_000016,climbing a rope,37,250
+./kinetics_subset/building cabinet/QgSd10zUNOk_000042_000052,building cabinet,38,300
+./kinetics_subset/building shed/7cxLylIaD8g_000031_000041,building shed,39,150
+./kinetics_subset/building shed/JoUC13aa86Q_000025_000035,building shed,39,300
+./kinetics_subset/waxing back/kEqAPT9MoCo_000114_000124,waxing back,40,300
+./kinetics_subset/pushing car/C7RSLBrpIXA_000000_000010,pushing car,41,125
+./kinetics_subset/pushing car/1EVpjfsm0Vc_000017_000027,pushing car,41,300
+./kinetics_subset/playing violin/sWFRmD9Of4s_000221_000231,playing violin,42,250
+./kinetics_subset/riding mule/l29Pu6CggfU_000112_000122,riding mule,43,210
+./kinetics_subset/riding mule/Lyl1RjqZMNk_000003_000013,riding mule,43,300
+./kinetics_subset/throwing discus/O_GXIbsmiqM_000002_000012,throwing discus,44,60
+./kinetics_subset/throwing discus/SAY7B3MTE6Y_000046_000056,throwing discus,44,120
+./kinetics_subset/exercising arm/Hm66l6uPTzE_000020_000030,exercising arm,45,300
+./kinetics_subset/snatch weight lifting/mRh74Xey64U_000015_000025,snatch weight lifting,46,168
+./kinetics_subset/snatch weight lifting/fko2E1uyu_8_000026_000036,snatch weight lifting,46,200
+./kinetics_subset/playing controller/BhaIwy7bhbI_000081_000091,playing controller,47,300
+./kinetics_subset/cleaning pool/3Mpb1qFzVE4_000030_000040,cleaning pool,48,300
+./kinetics_subset/cleaning pool/AHiu-Okbhho_000008_000018,cleaning pool,48,100
+./kinetics_subset/front raises/VFfxJlA7Zvw_000006_000016,front raises,49,250
+./kinetics_subset/front raises/XZqrYig2iGc_000035_000045,front raises,49,300
+./kinetics_subset/drinking shots/7pIXtKfshBk_000015_000025,drinking shots,50,300
+./kinetics_subset/dying hair/aqjUs77UHd0_000119_000129,dying hair,51,300
+./kinetics_subset/dying hair/qthN1ZVFtM8_000493_000503,dying hair,51,300
+./kinetics_subset/making sushi/l3BXqg2lP2k_000197_000207,making sushi,52,250
+./kinetics_subset/gymnastics tumbling/mlzx2bi9nwQ_000059_000069,gymnastics tumbling,53,300
+./kinetics_subset/gymnastics tumbling/InM7Quprn0E_000002_000012,gymnastics tumbling,53,300
+./kinetics_subset/gargling/UJLr0lDW59g_000019_000029,gargling,54,300
+./kinetics_subset/gargling/xVaz2kQsKmg_000270_000280,gargling,54,250
+./kinetics_subset/yoga/q1IiVYEOS9U_000058_000068,yoga,55,200
+./kinetics_subset/filling eyebrows/Asoiu259ExQ_000245_000255,filling eyebrows,56,300
+./kinetics_subset/filling eyebrows/l3qlWrb9PHQ_000111_000121,filling eyebrows,56,110
+./kinetics_subset/sign language interpreting/JxgVssMPCkQ_000000_000010,sign language interpreting,57,260
+./kinetics_subset/testifying/BTUTdvNdyUQ_000018_000028,testifying,58,300
+./kinetics_subset/testifying/x6aMNWIDK7A_000000_000010,testifying,58,300
+./kinetics_subset/plastering/8mfa79P0dHk_000048_000058,plastering,59,300
+./kinetics_subset/plastering/QexM35wFbsc_000001_000011,plastering,59,300
+./kinetics_subset/pole vault/ihOvPhJNt1M_000002_000012,pole vault,60,208
+./kinetics_subset/massaging person's head/ClIoQCdhpOo_000029_000039,massaging person's head,61,298
+./kinetics_subset/massaging person's head/gYa398oMlSQ_000576_000586,massaging person's head,61,300
+./kinetics_subset/skiing crosscountry/eIp0sfzrY_o_000000_000010,skiing crosscountry,62,300
+./kinetics_subset/swimming backstroke/daYtZ0t1ACk_000042_000052,swimming backstroke,63,300
+./kinetics_subset/swimming backstroke/VepdCmesIaU_000073_000083,swimming backstroke,63,250
+./kinetics_subset/swimming butterfly stroke/757jgRU9s04_000001_000011,swimming butterfly stroke,64,300
+./kinetics_subset/swimming butterfly stroke/LwzeGWT7_bk_000014_000024,swimming butterfly stroke,64,150
+./kinetics_subset/tossing coin/eVvtDRZtCO0_000013_000023,tossing coin,65,75
+./kinetics_subset/unboxing/bzUhx8PkXi4_000043_000053,unboxing,66,240
+./kinetics_subset/unboxing/oAhMYcExxgI_000002_000012,unboxing,66,300
+./kinetics_subset/bending back/UdVsbIeCgDQ_000027_000037,bending back,67,150
+./kinetics_subset/taking a shower/72Q8YrtVEIo_000059_000069,taking a shower,68,298
+./kinetics_subset/taking a shower/E8AN1tu0e3c_000016_000026,taking a shower,68,240
+./kinetics_subset/hurdling/q2-YgfjojXw_000018_000028,hurdling,69,300
+./kinetics_subset/hurdling/JvZfeAuVWPY_000004_000014,hurdling,69,94
+./kinetics_subset/ripping paper/u_IXdclQnPk_000000_000010,ripping paper,70,250
+./kinetics_subset/planting trees/7nA5QNPHEjY_000004_000014,planting trees,71,300
+./kinetics_subset/planting trees/Iwne-F4F-3w_000350_000360,planting trees,71,300
+./kinetics_subset/hula hooping/0GCBMmyqa7Q_000002_000012,hula hooping,72,180
+./kinetics_subset/recording music/cdHGz2izwzo_000004_000014,recording music,73,300
+./kinetics_subset/recording music/ox1uXReDjFM_000013_000023,recording music,73,273
+./kinetics_subset/wrapping present/Wg1gfvy7TDQ_000069_000079,wrapping present,74,300
+./kinetics_subset/wrapping present/4Pk9G60qB1M_000074_000084,wrapping present,74,300
+./kinetics_subset/mopping floor/oBWsovXUbbg_000008_000018,mopping floor,75,300
+./kinetics_subset/eating watermelon/BJweahZ1ZjM_000095_000105,eating watermelon,76,300
+./kinetics_subset/eating watermelon/Gt7YtDehFuA_000076_000086,eating watermelon,76,300
+./kinetics_subset/folding napkins/tPsqABAegN8_000016_000026,folding napkins,77,300
+./kinetics_subset/tying bow tie/GR53ETFBzNo_000026_000036,tying bow tie,78,300
+./kinetics_subset/washing feet/pXVBSEYnQAw_000183_000193,washing feet,79,250
+./kinetics_subset/washing feet/ASvSzkKckIY_000135_000145,washing feet,79,300
+./kinetics_subset/playing bass guitar/glRQjS3tAXE_000220_000230,playing bass guitar,80,300
+./kinetics_subset/shot put/Q6Pa4LpfK6Q_000004_000014,shot put,81,60
+./kinetics_subset/shot put/Tv0-bBaGsto_000001_000011,shot put,81,278
+./kinetics_subset/clean and jerk/McUma5bKyXE_000010_000020,clean and jerk,82,224
+./kinetics_subset/clean and jerk/R12ni65k4pc_000010_000020,clean and jerk,82,165
+./kinetics_subset/squat/xvbDRcfR4e4_000006_000016,squat,83,300
+./kinetics_subset/dancing charleston/_VV8Gs9SK2g_000084_000094,dancing charleston,84,300
+./kinetics_subset/dancing charleston/xCNy5tJpTOc_000078_000088,dancing charleston,84,300
+./kinetics_subset/riding a bike/RNQ32YmnezQ_000062_000072,riding a bike,85,300
+./kinetics_subset/arranging flowers/S_oc50X2EEA_000019_000029,arranging flowers,86,300
+./kinetics_subset/golf putting/io7jKGURNR8_000007_000017,golf putting,87,224
+./kinetics_subset/golf putting/uWCtNXdW9hk_000012_000022,golf putting,87,300
+./kinetics_subset/pumping fist/Xz-OELcFxSY_000004_000014,pumping fist,88,300
+./kinetics_subset/driving tractor/WtnQKvOuukE_000081_000091,driving tractor,89,300
+./kinetics_subset/driving tractor/wiiwhQ9uqvM_000018_000028,driving tractor,89,300
+./kinetics_subset/auctioning/j-uQCNW8ATw_000017_000027,auctioning,90,161
+./kinetics_subset/auctioning/HZ4BdT2iGWY_000149_000159,auctioning,90,300
+./kinetics_subset/playing saxophone/--7VUM9MKg4_000136_000146,playing saxophone,91,104
+./kinetics_subset/cutting watermelon/0-NbSopwDlk_000094_000104,cutting watermelon,92,300
+./kinetics_subset/cutting watermelon/L96R5eXY9dY_000028_000038,cutting watermelon,92,250
+./kinetics_subset/blowing leaves/AxQzyacF22k_000013_000023,blowing leaves,93,300
+./kinetics_subset/grooming horse/LUAEVO-kP2E_000562_000572,grooming horse,94,300
+./kinetics_subset/grooming horse/O2N8inmAz8c_000009_000019,grooming horse,94,300
+./kinetics_subset/hugging/wHgaTC8bh68_000178_000188,hugging,95,250
+./kinetics_subset/hugging/zberDcJDup0_000047_000057,hugging,95,300
+./kinetics_subset/playing cymbals/WqGv0r1VZ_E_000054_000064,playing cymbals,96,300
+./kinetics_subset/crying/-73Kg-MKmwE_000010_000020,crying,97,250
+./kinetics_subset/crying/z_luw-GEevM_000005_000015,crying,97,150
+./kinetics_subset/wrestling/Kaz7_LaW7k8_000000_000010,wrestling,98,300
+./kinetics_subset/garbage collecting/gQX2pEVSB7Y_000020_000030,garbage collecting,99,300
+./kinetics_subset/garbage collecting/NGzwJL9-4is_000298_000308,garbage collecting,99,300
+./kinetics_subset/answering questions/AqPeHqTDfGE_000068_000078,answering questions,100,300
+./kinetics_subset/answering questions/wTnHcvKCdKs_000105_000115,answering questions,100,240
+./kinetics_subset/making a cake/QMZU9WAF9Qg_000063_000073,making a cake,101,240
+./kinetics_subset/climbing tree/-oBhLbOiX0A_000036_000046,climbing tree,102,300
+./kinetics_subset/climbing tree/m0wo07UGmaQ_000016_000026,climbing tree,102,300
+./kinetics_subset/punching person (boxing)/RSFPNoAqd2w_000055_000065,punching person (boxing),103,260
+./kinetics_subset/checking tires/eR2o-xw28HI_000053_000063,checking tires,104,300
+./kinetics_subset/checking tires/2-M5TagOHMw_000003_000013,checking tires,104,300
+./kinetics_subset/faceplanting/PSb7rWq5drY_000034_000044,faceplanting,105,250
+./kinetics_subset/faceplanting/kwuAR3lbRxI_000010_000020,faceplanting,105,300
+./kinetics_subset/krumping/lr02DROpP4E_000001_000011,krumping,106,300
+./kinetics_subset/singing/mlxIjOqPz8A_000073_000083,singing,107,300
+./kinetics_subset/singing/dxnmqBn6Elc_000086_000096,singing,107,300
+./kinetics_subset/playing clarinet/m_aZrqBzUr0_000354_000364,playing clarinet,108,300
+./kinetics_subset/skateboarding/Xw-WT0yUimg_000334_000344,skateboarding,109,300
+./kinetics_subset/skateboarding/XtQYabalG6Y_000016_000026,skateboarding,109,250
+./kinetics_subset/surfing crowd/4g9BE6a3ZBQ_000120_000130,surfing crowd,110,300
+./kinetics_subset/surfing crowd/NpC1l2GeKRg_000022_000032,surfing crowd,110,300
+./kinetics_subset/ski jumping/-ge-jtX1Ik0_000010_000020,ski jumping,111,300
+./kinetics_subset/playing trumpet/9zPSvQlQh5k_000003_000013,playing trumpet,112,60
+./kinetics_subset/playing trumpet/iz8en2Dt7vE_000017_000027,playing trumpet,112,150
+./kinetics_subset/air drumming/QxZ5kYEJWxw_000004_000014,air drumming,113,300
+./kinetics_subset/cleaning toilet/hKMh4a1ppPM_000103_000113,cleaning toilet,114,300
+./kinetics_subset/cleaning toilet/f8XjrzVqfUg_000070_000080,cleaning toilet,114,300
+./kinetics_subset/petting animal (not cat)/1QcJSpmR97Q_000016_000026,petting animal (not cat),115,150
+./kinetics_subset/petting animal (not cat)/xfAQY2DP5LE_000020_000030,petting animal (not cat),115,300
+./kinetics_subset/triple jump/yekMo_M4wTQ_000000_000010,triple jump,116,300
+./kinetics_subset/making pizza/yi_opsuyb8g_000014_000024,making pizza,117,300
+./kinetics_subset/hoverboarding/gicTnDJ5y7g_000006_000016,hoverboarding,118,255
+./kinetics_subset/eating cake/jeKgg_IKOLE_000002_000012,eating cake,119,300
+./kinetics_subset/tickling/rl9KKEaeGzA_000180_000190,tickling,120,300
+./kinetics_subset/tickling/Z9uJo-icv6g_001496_001506,tickling,120,300
+./kinetics_subset/salsa dancing/s0kTTBizjl8_000106_000116,salsa dancing,121,300
+./kinetics_subset/salsa dancing/XNmy31WWVw8_000055_000065,salsa dancing,121,300
+./kinetics_subset/eating doughnuts/_bF6pD1OPGw_000002_000012,eating doughnuts,122,300
+./kinetics_subset/skiing (not slalom or crosscountry)/TS4PJQAO27s_000003_000013,skiing (not slalom or crosscountry),123,150
+./kinetics_subset/skiing (not slalom or crosscountry)/8THYn_PmBw4_000083_000093,skiing (not slalom or crosscountry),123,300
+./kinetics_subset/sharpening pencil/aj2s1GLbLYo_000005_000015,sharpening pencil,124,300
+./kinetics_subset/kissing/Qw-slbWE8Bs_000019_000029,kissing,125,150
+./kinetics_subset/running on treadmill/DiTdmdqKVRA_000045_000055,running on treadmill,126,300
+./kinetics_subset/biking through snow/VArzrporV9g_000050_000060,biking through snow,127,300
+./kinetics_subset/bowling/VihiNVOAx9g_000007_000017,bowling,128,158
+./kinetics_subset/playing kickball/Sa25C3h-F6A_000177_000187,playing kickball,129,300
+./kinetics_subset/playing trombone/jVlljOCmmK0_000003_000013,playing trombone,130,300
+./kinetics_subset/playing trombone/9FisBO13eQ4_000030_000040,playing trombone,130,300
+./kinetics_subset/exercising with an exercise ball/3PZEmjxbXZI_000044_000054,exercising with an exercise ball,131,300
+./kinetics_subset/marching/xDdkv6DnkP8_000008_000018,marching,132,250
+./kinetics_subset/marching/yWkdBcwE05w_000169_000179,marching,132,300
+./kinetics_subset/deadlifting/Xx3JyFcmDcQ_000008_000018,deadlifting,133,148
+./kinetics_subset/smoking/xhqnmHDI5Hg_000388_000398,smoking,134,300
+./kinetics_subset/riding camel/l5ay98yfcT8_000009_000019,riding camel,135,124
+./kinetics_subset/riding camel/1lZTkyXPh34_000001_000011,riding camel,135,184
+./kinetics_subset/texting/62YF_4aZBk4_000567_000577,texting,136,300
+./kinetics_subset/texting/kQPdUaHZJcg_000022_000032,texting,136,300
+./kinetics_subset/breakdancing/4T2F4PQ97GE_000008_000018,breakdancing,137,175
+./kinetics_subset/tasting food/V-KZJfx8XCc_000116_000126,tasting food,138,300
+./kinetics_subset/tasting food/-F4jKfyxGQ4_000108_000118,tasting food,138,300
+./kinetics_subset/playing cricket/2JKNib-cv34_000549_000559,playing cricket,139,250
+./kinetics_subset/using computer/PsQCoFqlg1M_000120_000130,using computer,140,300
+./kinetics_subset/using computer/eRhJqB9hfTc_000001_000011,using computer,140,300
+./kinetics_subset/using segway/BljsNtmJDUU_000021_000031,using segway,141,300
+./kinetics_subset/using segway/__wsytoYy3Q_000055_000065,using segway,141,300
+./kinetics_subset/playing guitar/qH1dW6YUeUo_000273_000283,playing guitar,142,300
+./kinetics_subset/tapping pen/7cn3Bz-Zq8w_000138_000148,tapping pen,143,250
+./kinetics_subset/tapping pen/hso5h4MEtC8_000021_000031,tapping pen,143,250
+./kinetics_subset/doing nails/i4u4TC8HVZA_000075_000085,doing nails,144,70
+./kinetics_subset/brush painting/bIZ-ZHKVuq0_000627_000637,brush painting,145,300
+./kinetics_subset/brush painting/MdMsl1KTDww_000243_000253,brush painting,145,300
+./kinetics_subset/slacklining/ukQWQ--cd7o_000003_000013,slacklining,146,300
+./kinetics_subset/slacklining/2tqU3wt7RMw_000047_000057,slacklining,146,300
+./kinetics_subset/robot dancing/5MrCyAqp0Rs_000002_000012,robot dancing,147,217
+./kinetics_subset/yawning/Hlx8XP-VZv4_000068_000078,yawning,148,220
+./kinetics_subset/yawning/gKTC8vwvW6E_000039_000049,yawning,148,300
+./kinetics_subset/drinking beer/RWVlmzo4CdY_000001_000011,drinking beer,149,300
+./kinetics_subset/feeding fish/RMXnwUfPfv4_000000_000010,feeding fish,150,300
+./kinetics_subset/feeding fish/-15UpGVyV4w_000001_000011,feeding fish,150,199
+./kinetics_subset/cooking egg/l7t413Q1nEw_000284_000294,cooking egg,151,300
+./kinetics_subset/playing monopoly/fiPxfO5WCRo_000378_000388,playing monopoly,152,300
+./kinetics_subset/egg hunting/3_L_5PJerPw_000308_000318,egg hunting,153,300
+./kinetics_subset/egg hunting/5s18pSWPKY0_000019_000029,egg hunting,153,300
+./kinetics_subset/climbing ladder/ko29Hjq92p8_000067_000077,climbing ladder,154,300
+./kinetics_subset/climbing ladder/70Er7J3srS0_000001_000011,climbing ladder,154,300
+./kinetics_subset/dancing gangnam style/rTrUoH8bPls_000005_000015,dancing gangnam style,155,300
+./kinetics_subset/laying bricks/J0ZEeOn5QbQ_000585_000595,laying bricks,156,300
+./kinetics_subset/laying bricks/fXrFIZUmL-M_000008_000018,laying bricks,156,300
+./kinetics_subset/celebrating/PcBiFAHWTX8_000148_000158,celebrating,157,300
+./kinetics_subset/push up/7-oMB0k0sSM_000058_000068,push up,158,300
+./kinetics_subset/push up/ADaxhBg1di4_000000_000010,push up,158,300
+./kinetics_subset/milking cow/tnCsbozzJ4c_000028_000038,milking cow,159,270
+./kinetics_subset/milking cow/lEQK_0GlpcU_000019_000029,milking cow,159,290
+./kinetics_subset/flying kite/7aUBxzF8sd4_000011_000021,flying kite,160,300
+./kinetics_subset/passing American football (not in game)/yYXb7Y9QfUk_000420_000430,passing American football (not in game),161,300
+./kinetics_subset/passing American football (not in game)/tKycwSVjsrM_000000_000010,passing American football (not in game),161,300
+./kinetics_subset/sled dog racing/uI3JJieSeoE_000082_000092,sled dog racing,162,250
+./kinetics_subset/beatboxing/rF8VoQuz4tI_000025_000035,beatboxing,163,150
+./kinetics_subset/parkour/xuLKv7wV8gU_000002_000012,parkour,164,250
+./kinetics_subset/sword fighting/gnPMxTPhJwg_000206_000216,sword fighting,165,299
+./kinetics_subset/sword fighting/_EJXOUCnPZ4_000041_000051,sword fighting,165,300
+./kinetics_subset/sanding floor/W6ebrr402EQ_000003_000013,sanding floor,166,300
+./kinetics_subset/windsurfing/D4BPjdrFzyo_000026_000036,windsurfing,167,150
+./kinetics_subset/windsurfing/_GBgcrA8nH0_000026_000036,windsurfing,167,300
+./kinetics_subset/cleaning gutters/nBuzKEWuj18_000040_000050,cleaning gutters,168,300
+./kinetics_subset/presenting weather forecast/Ybr8JqtAytI_000043_000053,presenting weather forecast,169,138
+./kinetics_subset/presenting weather forecast/OW7hkOxf2mk_000010_000020,presenting weather forecast,169,300
+./kinetics_subset/stomping grapes/hg5RjqVrLOY_000056_000066,stomping grapes,170,300
+./kinetics_subset/stomping grapes/S4WIEBaufZg_000029_000039,stomping grapes,170,300
+./kinetics_subset/playing badminton/od5JlnWF_gE_000007_000017,playing badminton,171,250
+./kinetics_subset/changing oil/3h5DzZB6w7g_000293_000303,changing oil,172,300
+./kinetics_subset/changing oil/AFP5p_fgPNw_000184_000194,changing oil,172,300
+./kinetics_subset/scuba diving/6l7Dqui5Dyk_000329_000339,scuba diving,173,300
+./kinetics_subset/riding mechanical bull/iqhjRsO507Y_000003_000013,riding mechanical bull,174,300
+./kinetics_subset/riding mechanical bull/nFKZEdatgSc_000016_000026,riding mechanical bull,174,240
+./kinetics_subset/skipping rope/vxkzbSCy2cU_000015_000025,skipping rope,175,300
+./kinetics_subset/skipping rope/EraTWAIeZZ8_000012_000022,skipping rope,175,300
+./kinetics_subset/dunking basketball/JJWIitA7QqI_000021_000031,dunking basketball,176,270
+./kinetics_subset/spraying/YYM0nLy1q2M_000024_000034,spraying,177,300
+./kinetics_subset/spraying/-LSeaW6ctQA_000045_000055,spraying,177,300
+./kinetics_subset/riding mountain bike/nxJ3OAeDA4w_000008_000018,riding mountain bike,178,0
+./kinetics_subset/cleaning floor/ADzB-RTmLJU_000004_000014,cleaning floor,179,300
+./kinetics_subset/cleaning floor/nYOXbF4vzDc_000002_000012,cleaning floor,179,300
+./kinetics_subset/feeding goats/pxjTukRjllA_000033_000043,feeding goats,180,300
+./kinetics_subset/feeding goats/CQVEb9xLogE_000004_000014,feeding goats,180,300
+./kinetics_subset/somersaulting/X4C522pjiHs_000003_000013,somersaulting,181,300
+./kinetics_subset/headbutting/Be7e7VeH4Bs_000061_000071,headbutting,182,300
+./kinetics_subset/headbutting/d69_vu5xync_000025_000035,headbutting,182,299
+./kinetics_subset/ironing/ZQJS-q13Y-Q_000019_000029,ironing,183,250
+./kinetics_subset/pumping gas/yAxeRVOQ4xE_000003_000013,pumping gas,184,250
+./kinetics_subset/pumping gas/igXYSZkwlWg_000032_000042,pumping gas,184,300
+./kinetics_subset/tap dancing/dZ1EkA3BuQ4_000000_000010,tap dancing,185,300
+./kinetics_subset/tap dancing/gCKwz0sOSqA_000238_000248,tap dancing,185,250
+./kinetics_subset/playing chess/YZyUsvx_5ck_000085_000095,playing chess,186,300
+./kinetics_subset/busking/KQ9hhmeyoSM_000162_000172,busking,187,300
+./kinetics_subset/washing dishes/wG1cGREDz1M_000076_000086,washing dishes,188,249
+./kinetics_subset/washing dishes/3-aJe_yA5lQ_000011_000021,washing dishes,188,300
+./kinetics_subset/knitting/HrM9ox12yVU_000176_000186,knitting,189,300
+./kinetics_subset/cheerleading/OAKYkzt35N4_000224_000234,cheerleading,190,300
+./kinetics_subset/cheerleading/NAeXDvPrPiw_000074_000084,cheerleading,190,300
+./kinetics_subset/dribbling basketball/qoODmONT1a0_000019_000029,dribbling basketball,191,290
+./kinetics_subset/applauding/MEJBAV_vE5k_000000_000010,applauding,192,250
+./kinetics_subset/applauding/YSGHvSk3xqY_000001_000011,applauding,192,300
+./kinetics_subset/blowing nose/8zgQWlLFWXs_000007_000017,blowing nose,193,159
+./kinetics_subset/blowing nose/wHAoJwcyKLI_000012_000022,blowing nose,193,300
+./kinetics_subset/high jump/PIGs9Qlqqg8_000004_000014,high jump,194,120
+./kinetics_subset/massaging legs/M3lYJ-znb7A_000054_000064,massaging legs,195,300
+./kinetics_subset/massaging legs/p1Tf9rKotCU_000173_000183,massaging legs,195,300
+./kinetics_subset/shearing sheep/PRB3uCXAlsc_000020_000030,shearing sheep,196,149
+./kinetics_subset/waxing eyebrows/LSLzeVlyYAU_000029_000039,waxing eyebrows,197,300
+./kinetics_subset/waxing eyebrows/hPtOQb3vcBI_000033_000043,waxing eyebrows,197,300
+./kinetics_subset/digging/VN2IZNMLekQ_000014_000024,digging,198,100
+./kinetics_subset/digging/-5LEMasZdOc_000015_000025,digging,198,300
+./kinetics_subset/frying vegetables/7DfvIrBX7ks_000375_000385,frying vegetables,199,300
+./kinetics_subset/crawling baby/Wy9A7b7FK_Y_000053_000063,crawling baby,200,300
+./kinetics_subset/crawling baby/JtNE-ZlzOE8_000075_000085,crawling baby,200,160
+./kinetics_subset/hurling (sport)/tH1qCM-D2l4_000545_000555,hurling (sport),201,250
+./kinetics_subset/cleaning shoes/hXAaqobVCa0_000258_000268,cleaning shoes,202,300
+./kinetics_subset/cleaning shoes/y9kk0ptXevk_000055_000065,cleaning shoes,202,300
+./kinetics_subset/playing bagpipes/BPxC2WjBAbQ_000002_000012,playing bagpipes,203,184
+./kinetics_subset/playing bagpipes/xm-E8PQrz7k_000019_000029,playing bagpipes,203,300
+./kinetics_subset/rock climbing/Eg1Ow6gaKEQ_000004_000014,rock climbing,204,300
+./kinetics_subset/playing tennis/4TfpfZPfM9s_000016_000026,playing tennis,205,300
+./kinetics_subset/playing tennis/YD-_BK3KI7E_000060_000070,playing tennis,205,300
+./kinetics_subset/country line dancing/CSHnDKV8yBI_000053_000063,country line dancing,206,128
+./kinetics_subset/making jewelry/LZbvcxJiyrE_000845_000855,making jewelry,207,300
+./kinetics_subset/making jewelry/jt1uPpYD-YU_000779_000789,making jewelry,207,250
+./kinetics_subset/riding scooter/rWTbK2jw4FY_000039_000049,riding scooter,208,273
+./kinetics_subset/riding scooter/r7AIEmqkHnE_000012_000022,riding scooter,208,300
+./kinetics_subset/clay pottery making/x5h_QLUU59Q_000165_000175,clay pottery making,209,300
+./kinetics_subset/pushing cart/m6tBO6BS2j0_000102_000112,pushing cart,210,300
+./kinetics_subset/pushing cart/rEjSQFehqqs_000050_000060,pushing cart,210,124
+./kinetics_subset/playing cards/NEg-wWRcLdI_000557_000567,playing cards,211,300
+./kinetics_subset/swinging legs/APUtOhO2T2Q_000006_000016,swinging legs,212,300
+./kinetics_subset/swinging legs/HlFxQ9NhCrY_000003_000013,swinging legs,212,176
+./kinetics_subset/disc golfing/-faKuDUKkdw_000004_000014,disc golfing,213,300
+./kinetics_subset/disc golfing/o1DsVQYM2MQ_000006_000016,disc golfing,213,212
+./kinetics_subset/snowkiting/BzguUB_wvtc_000352_000362,snowkiting,215,300
+./kinetics_subset/snowkiting/9CuKe36LdKs_000192_000202,snowkiting,215,300
+./kinetics_subset/crossing river/Z6502nHyGKI_000001_000011,crossing river,216,300
+./kinetics_subset/crossing river/nt5sPExRJxQ_000003_000013,crossing river,216,240
+./kinetics_subset/juggling balls/l7K4xvJDjrQ_000000_000010,juggling balls,217,300
+./kinetics_subset/moving furniture/ZCI526sotQU_000014_000024,moving furniture,218,300
+./kinetics_subset/moving furniture/gVuRHeoN1xs_000036_000046,moving furniture,218,286
+./kinetics_subset/drop kicking/VDaBJpPy7Uc_000003_000013,drop kicking,219,140
+./kinetics_subset/balloon blowing/3URFq-d2gLY_000106_000116,balloon blowing,220,300
+./kinetics_subset/balloon blowing/Ge_itPm-vSI_000071_000081,balloon blowing,220,300
+./kinetics_subset/stretching leg/VzgWI-Q2MbA_000054_000064,stretching leg,221,300
+./kinetics_subset/stretching leg/ZhjRmK4JHrM_000004_000014,stretching leg,221,300
+./kinetics_subset/shaving legs/uyZ33zyffSA_000006_000016,shaving legs,222,250
+./kinetics_subset/shining shoes/XBY7gdWf12o_000005_000015,shining shoes,223,300
+./kinetics_subset/shining shoes/Jj_50MJQQRU_000082_000092,shining shoes,223,300
+./kinetics_subset/blowing out candles/ZRkNx8RWKqg_000014_000024,blowing out candles,224,300
+./kinetics_subset/juggling fire/Z7aUdqwHfvk_000149_000159,juggling fire,225,300
+./kinetics_subset/juggling fire/alRblfjQjoU_000039_000049,juggling fire,225,300
+./kinetics_subset/abseiling/j32z4MASgo8_000205_000215,abseiling,226,250
+./kinetics_subset/abseiling/bFdTLPL8TTM_000169_000179,abseiling,226,300
+./kinetics_subset/jetskiing/JPpvWw4yKUA_000107_000117,jetskiing,227,118
+./kinetics_subset/dodgeball/C8mKEDcy8ZY_000111_000121,dodgeball,228,240
+./kinetics_subset/dodgeball/c-rx2sUfp50_000067_000077,dodgeball,228,300
+./kinetics_subset/baking cookies/Y7NOxJo8HKU_000169_000179,baking cookies,229,300
+./kinetics_subset/decorating the christmas tree/wqUmM3r4kq4_000110_000120,decorating the christmas tree,230,300
+./kinetics_subset/decorating the christmas tree/I_Fr8XPU2q4_000095_000105,decorating the christmas tree,230,150
+./kinetics_subset/carrying baby/EZ6OZXU93B8_000001_000011,carrying baby,231,300
+./kinetics_subset/carrying baby/JYJ6qZ2DevY_000068_000078,carrying baby,231,250
+./kinetics_subset/dancing ballet/8HGm-m-CwO8_000121_000131,dancing ballet,232,300
+./kinetics_subset/tango dancing/tcP36vVwy_E_000001_000011,tango dancing,233,240
+./kinetics_subset/waiting in line/-wZZiZNYHIA_000004_000014,waiting in line,234,151
+./kinetics_subset/waiting in line/xTwGW5QkGFg_000025_000035,waiting in line,234,300
+./kinetics_subset/hitting baseball/N5zWQkoLM3M_000120_000130,hitting baseball,235,300
+./kinetics_subset/snowmobiling/HQDaDuvsdrs_000259_000269,snowmobiling,236,300
+./kinetics_subset/snowmobiling/x5-IcIRAEcQ_000056_000066,snowmobiling,236,300
+./kinetics_subset/sailing/RI7Tln1T1wg_000003_000013,sailing,237,300
+./kinetics_subset/shuffling cards/Z6QA6iYK6Vw_000021_000031,shuffling cards,238,250
+./kinetics_subset/shuffling cards/P0hQUySz4WU_000054_000064,shuffling cards,238,300
+./kinetics_subset/welding/ifM7PvyMwQU_000009_000019,welding,239,120
+./kinetics_subset/welding/Q4gZD-LkS1s_000450_000460,welding,239,300
+./kinetics_subset/roller skating/16QWe9j5pUA_000133_000143,roller skating,240,300
+./kinetics_subset/tying knot (not on a tie)/NoXMdEt133g_000042_000052,tying knot (not on a tie),241,300
+./kinetics_subset/tying knot (not on a tie)/98_TK4AIG90_000001_000011,tying knot (not on a tie),241,300
+./kinetics_subset/mowing lawn/AsghD21CFr4_000054_000064,mowing lawn,242,300
+./kinetics_subset/catching or throwing frisbee/RlFMUo-__JE_000017_000027,catching or throwing frisbee,243,300
+./kinetics_subset/catching or throwing frisbee/6kQJCejF90E_000004_000014,catching or throwing frisbee,243,150
+./kinetics_subset/tai chi/IO3qDxDsqcc_000206_000216,tai chi,244,300
+./kinetics_subset/tai chi/jKqYZnLhy0U_000098_000108,tai chi,244,300
+./kinetics_subset/passing American football (in game)/aUfblO8zRTQ_000124_000134,passing American football (in game),245,240
+./kinetics_subset/long jump/b7PCpt7ovHI_000001_000011,long jump,246,300
+./kinetics_subset/long jump/GcsTIhvmNDY_000000_000010,long jump,246,165
+./kinetics_subset/laughing/mcgSKxeuRrM_000015_000025,laughing,247,300
+./kinetics_subset/chopping wood/aS7S_whb0RE_000005_000015,chopping wood,248,253
+./kinetics_subset/chopping wood/yrUpiNhfj50_000007_000017,chopping wood,248,100
+./kinetics_subset/playing drums/AvX4VwFaPmY_000106_000116,playing drums,249,300
+./kinetics_subset/playing drums/aqeHbJc8iho_000068_000078,playing drums,249,100
+./kinetics_subset/shaving head/sD-TQ2sYdTQ_000018_000028,shaving head,250,250
+./kinetics_subset/pushing wheelchair/MvrD38BLIbs_000009_000019,pushing wheelchair,251,250
+./kinetics_subset/pushing wheelchair/EEqt0eqOUO4_000000_000010,pushing wheelchair,251,300
+./kinetics_subset/cooking sausages/OBn_qqYeW5Y_000066_000076,cooking sausages,252,300
+./kinetics_subset/reading book/LXLXIKc1_nA_000047_000057,reading book,253,75
+./kinetics_subset/reading book/QkrG-ZIm2gQ_000325_000335,reading book,253,240
+./kinetics_subset/lunge/w083-K1zgfM_000014_000024,lunge,254,300
+./kinetics_subset/lunge/TsaLJz50PBQ_000010_000020,lunge,254,300
+./kinetics_subset/grinding meat/Um82R7CPwLk_000072_000082,grinding meat,255,300
+./kinetics_subset/walking the dog/SpR14ByTEqo_000001_000011,walking the dog,256,300
+./kinetics_subset/walking the dog/I_72JraEBrU_000090_000100,walking the dog,256,300
+./kinetics_subset/jumping into pool/kaFtaApoEQE_000002_000012,jumping into pool,257,80
+./kinetics_subset/tobogganing/N7RKGUTTpIE_000015_000025,tobogganing,258,297
+./kinetics_subset/tobogganing/artxh3ld_MU_000003_000013,tobogganing,258,300
+./kinetics_subset/riding elephant/f-U2IXL3uk0_000005_000015,riding elephant,259,300
+./kinetics_subset/riding elephant/Hp4kRXMEO0o_000037_000047,riding elephant,259,300
+./kinetics_subset/spinning poi/3ypcGnvMuFo_000184_000194,spinning poi,260,120
+./kinetics_subset/holding snake/sZ_JfbV21Cc_000005_000015,holding snake,261,300
+./kinetics_subset/holding snake/4E75lDljah8_000151_000161,holding snake,261,299
+./kinetics_subset/opening bottle/Xk8eUQ-_xPg_000000_000010,opening bottle,262,300
+./kinetics_subset/opening present/Hkps87fGZxM_000005_000015,opening present,263,290
+./kinetics_subset/opening present/SlTShPIwaBA_000208_000218,opening present,263,300
+./kinetics_subset/swing dancing/_S0j2Y8kmqc_000041_000051,swing dancing,264,250
+./kinetics_subset/swing dancing/p_4sdRg5Vx0_000007_000017,swing dancing,264,300
+./kinetics_subset/playing harp/7TZOYU__Ta0_000053_000063,playing harp,265,300
+./kinetics_subset/waxing legs/I34F9PTQmZo_000025_000035,waxing legs,266,216
+./kinetics_subset/waxing legs/d2GgotB0jbA_000445_000455,waxing legs,266,250
+./kinetics_subset/weaving basket/LwWoyuw0sbw_000303_000313,weaving basket,267,250
+./kinetics_subset/clapping/Qif36pZVg6g_000014_000024,clapping,268,300
+./kinetics_subset/clapping/KqmtERKU1OY_000056_000066,clapping,268,300
+./kinetics_subset/golf chipping/0_tWYFDPZd8_000066_000076,golf chipping,269,300
+./kinetics_subset/golf chipping/VItOEgmBM3k_000052_000062,golf chipping,269,288
+./kinetics_subset/riding or walking with horse/-ApPJCMjZVg_000114_000124,riding or walking with horse,270,300
+./kinetics_subset/feeding birds/uSf-fq6V5do_000001_000011,feeding birds,271,300
+./kinetics_subset/feeding birds/zL2vyCX7qik_000019_000029,feeding birds,271,150
+./kinetics_subset/kicking field goal/Uii8fMpXAKs_000000_000010,kicking field goal,272,300
+./kinetics_subset/baby waking up/EZ4nM6aWab8_000037_000047,baby waking up,273,120
+./kinetics_subset/baby waking up/noCKr2pC5K0_000000_000010,baby waking up,273,300
+./kinetics_subset/drinking/06A7IVDdaXo_000091_000101,drinking,274,300
+./kinetics_subset/drinking/QFOdPkIfSIQ_000865_000875,drinking,274,300
+./kinetics_subset/snowboarding/0i5IfU3yOxg_001259_001269,snowboarding,275,300
+./kinetics_subset/brushing teeth/tZ7oHtNZpJ4_000048_000058,brushing teeth,276,300
+./kinetics_subset/brushing teeth/wrlHs_EsLOY_000106_000116,brushing teeth,276,300
+./kinetics_subset/cracking neck/Uy1MMU2qVRE_000002_000012,cracking neck,277,48
+./kinetics_subset/rock scissors paper/dvKVGfFQyyA_000039_000049,rock scissors paper,278,236
+./kinetics_subset/hammer throw/EWnRPJ7BEjM_000025_000035,hammer throw,279,165
+./kinetics_subset/hammer throw/UQ1Z8H4u1lQ_000003_000013,hammer throw,279,157
+./kinetics_subset/hockey stop/nPqhRbuIDww_000020_000030,hockey stop,280,222
+./kinetics_subset/unloading truck/SkmsoFWg3EI_000000_000010,unloading truck,281,182
+./kinetics_subset/unloading truck/TfJTWs4SLAY_000001_000011,unloading truck,281,300
+./kinetics_subset/flipping pancake/asZphJY30fA_000000_000010,flipping pancake,282,118
+./kinetics_subset/flipping pancake/SEMmkjkcAKk_000003_000013,flipping pancake,282,103
+./kinetics_subset/brushing hair/9Y4VWs9AlFA_000582_000592,brushing hair,283,300
+./kinetics_subset/cleaning windows/aTIVRjD_AI8_000248_000258,cleaning windows,284,240
+./kinetics_subset/cleaning windows/Yk_4d83mUy0_000000_000010,cleaning windows,284,300
+./kinetics_subset/making a sandwich/jZAcZGr7KQQ_000062_000072,making a sandwich,285,300
+./kinetics_subset/eating carrots/hFu5vO96uuA_000020_000030,eating carrots,286,300
+./kinetics_subset/eating carrots/6K9J9NfvDjE_000053_000063,eating carrots,286,300
+./kinetics_subset/eating chips/UhougxuNqms_000017_000027,eating chips,287,300
+./kinetics_subset/eating chips/CRbBXsksAqg_000002_000012,eating chips,287,300
+./kinetics_subset/cooking on campfire/MtFoZtsXwjY_000011_000021,cooking on campfire,288,300
+./kinetics_subset/getting a haircut/JahTs0ie5P0_000056_000066,getting a haircut,289,250
+./kinetics_subset/getting a haircut/sYxLHNfp9EU_000088_000098,getting a haircut,289,300
+./kinetics_subset/riding unicycle/64czn6u_ZD0_000039_000049,riding unicycle,290,300
+./kinetics_subset/watering plants/7b0sYkelXiQ_000020_000030,watering plants,291,300
+./kinetics_subset/watering plants/3RfsZrH-gPs_000029_000039,watering plants,291,300
+./kinetics_subset/applying cream/MpFFhBLx8Xk_000001_000011,applying cream,292,300
+./kinetics_subset/applying cream/LgW8pMDtylE_000041_000051,applying cream,292,300
+./kinetics_subset/canoeing or kayaking/waDJJrTySFE_000037_000047,canoeing or kayaking,293,250
+./kinetics_subset/shaking head/_GXRL4kUqX0_000003_000013,shaking head,294,120
+./kinetics_subset/shaking head/_a83u5i1iWQ_000007_000017,shaking head,294,208
+./kinetics_subset/swinging on something/2QeFt-2QcQw_000006_000016,swinging on something,295,300
+./kinetics_subset/catching fish/mhrSHTTTMDs_000057_000067,catching fish,296,300
+./kinetics_subset/catching fish/joKUDxAn1i0_000077_000087,catching fish,296,300
+./kinetics_subset/folding clothes/CYXOO1zXacs_000001_000011,folding clothes,297,197
+./kinetics_subset/bungee jumping/X2OZ15Je6ME_000004_000014,bungee jumping,298,284
+./kinetics_subset/making tea/pzvPaPgLehs_000051_000061,making tea,299,300
+./kinetics_subset/capoeira/QFL4lQINTjU_000050_000060,capoeira,300,300
+./kinetics_subset/capoeira/vWPCvR3PDFU_000068_000078,capoeira,300,150
+./kinetics_subset/folding paper/VqjlGT8xRNc_000034_000044,folding paper,301,300
+./kinetics_subset/swimming breast stroke/zqy79-BNFyg_000032_000042,swimming breast stroke,302,300
+./kinetics_subset/swimming breast stroke/V2CbiUgoHHs_000001_000011,swimming breast stroke,302,300
+./kinetics_subset/peeling apples/JWvR_MmdTOA_000076_000086,peeling apples,303,300
+./kinetics_subset/peeling apples/yRPAashsbds_000090_000100,peeling apples,303,300
+./kinetics_subset/paragliding/IYNP1CaawP4_000004_000014,paragliding,304,250
+./kinetics_subset/slapping/9XvQuC2n0zg_000003_000013,slapping,305,137
+./kinetics_subset/slapping/ycI2L7ELHXE_000030_000040,slapping,305,300
+./kinetics_subset/throwing ball/sxPKQUjqVAE_000034_000044,throwing ball,306,300
+./kinetics_subset/scrambling eggs/RtQx5J0KSK0_000034_000044,scrambling eggs,307,300
+./kinetics_subset/scrambling eggs/282ALbZe7Ek_000053_000063,scrambling eggs,307,250
+./kinetics_subset/reading newspaper/ju7KZiJC9qM_000012_000022,reading newspaper,308,240
+./kinetics_subset/reading newspaper/d1M4dDjQXXA_001014_001024,reading newspaper,308,300
+./kinetics_subset/massaging back/XG8bvUfC-Jk_001803_001813,massaging back,309,300
+./kinetics_subset/playing piano/x0LZDY9latg_000001_000011,playing piano,310,298
+./kinetics_subset/playing piano/rzO_awjsvVI_000000_000010,playing piano,310,300
+./kinetics_subset/trimming or shaving beard/Gkfv1S1qb0w_000055_000065,trimming or shaving beard,311,300
+./kinetics_subset/strumming guitar/DWR5RL4Lzgg_000019_000029,strumming guitar,312,173
+./kinetics_subset/strumming guitar/6JaIw6fb3Lo_000078_000088,strumming guitar,312,300
+./kinetics_subset/tasting beer/RGaGZvKghGU_000038_000048,tasting beer,313,300
+./kinetics_subset/tasting beer/c--YbuFrXbI_000105_000115,tasting beer,313,240
+./kinetics_subset/shaking hands/yfKm2hz9psg_000000_000010,shaking hands,314,156
+./kinetics_subset/dining/9Ej1hMEhbYI_000510_000520,dining,315,250
+./kinetics_subset/dining/jgnqEsM1odg_000043_000053,dining,315,300
+./kinetics_subset/jogging/WqEn9f1-ekE_000019_000029,jogging,316,300
+./kinetics_subset/fixing hair/QPLs2eMr778_000004_000014,fixing hair,317,300
+./kinetics_subset/fixing hair/JQ6sX-uG9yY_000028_000038,fixing hair,317,300
+./kinetics_subset/playing recorder/XGemYI1k1Q8_000002_000012,playing recorder,318,300
+./kinetics_subset/playing recorder/nJVM_LYlZK8_000015_000025,playing recorder,318,300
+./kinetics_subset/setting table/Zrg59MrnZBw_000068_000078,setting table,319,300
+./kinetics_subset/throwing axe/1LsTfa0aTb8_000004_000014,throwing axe,320,150
+./kinetics_subset/throwing axe/6od-Gp0u7oQ_000028_000038,throwing axe,320,153
+./kinetics_subset/parasailing/_5Mk3yxmVwY_000254_000264,parasailing,321,300
+./kinetics_subset/playing cello/aZlyj-8vM3c_000065_000075,playing cello,322,240
+./kinetics_subset/playing cello/1MJFBGPRCow_000013_000023,playing cello,322,300
+./kinetics_subset/eating burger/fIpUvHPWyOU_000012_000022,eating burger,323,300
+./kinetics_subset/eating burger/TAhdlUTEv2c_000007_000017,eating burger,323,300
+./kinetics_subset/cutting nails/2s5vwduYTWM_000042_000052,cutting nails,324,300
+./kinetics_subset/training dog/nZ0sACbNCns_000036_000046,training dog,325,300
+./kinetics_subset/training dog/fPxmCfuX7qo_000003_000013,training dog,325,300
+./kinetics_subset/blowing glass/f-C01BBSc5A_000028_000038,blowing glass,326,300
+./kinetics_subset/doing laundry/qRzBCfhTSS0_000000_000010,doing laundry,327,300
+./kinetics_subset/doing laundry/85uuutw02AU_000050_000060,doing laundry,327,300
+./kinetics_subset/zumba/PY_aNRmCnzw_000143_000153,zumba,328,300
+./kinetics_subset/zumba/kgHytANtrn0_000048_000058,zumba,328,300
+./kinetics_subset/drumming fingers/ZmCHFmjnRes_000242_000252,drumming fingers,330,300
+./kinetics_subset/drumming fingers/yiZLaUhso1Y_000001_000011,drumming fingers,330,300
+./kinetics_subset/bandaging/xFW5l5IQq48_000035_000045,bandaging,331,250
+./kinetics_subset/bandaging/pIxzPP5JUT4_000070_000080,bandaging,331,300
+./kinetics_subset/barbequing/0Jzz8XkT5i4_000008_000018,barbequing,332,211
+./kinetics_subset/catching or throwing baseball/AsPjORZU-cU_000055_000065,catching or throwing baseball,333,300
+./kinetics_subset/catching or throwing baseball/U-9yKgzMnl8_000019_000029,catching or throwing baseball,333,250
+./kinetics_subset/making snowman/L_0NMGwhtUQ_000007_000017,making snowman,334,300
+./kinetics_subset/sharpening knives/qgAoS-OVAos_000135_000145,sharpening knives,335,300
+./kinetics_subset/sharpening knives/4t_u9jEQWCY_000139_000149,sharpening knives,335,300
+./kinetics_subset/bench pressing/mTOeP7vfzso_000001_000011,bench pressing,336,300
+./kinetics_subset/bench pressing/BFPKPjBgXIU_000022_000032,bench pressing,336,300
+./kinetics_subset/headbanging/Zrde3hdB9Cg_000003_000013,headbanging,337,198
+./kinetics_subset/driving car/JdMRrkmzPFU_000013_000023,driving car,338,299
+./kinetics_subset/driving car/tVuop87KbDY_000011_000021,driving car,338,240
+./kinetics_subset/situp/CZOroZ61VSg_000000_000010,situp,339,240
+./kinetics_subset/trapezing/rUFwgAmew1M_000001_000011,trapezing,340,300
+./kinetics_subset/archery/5rElcI860iU_000075_000085,archery,341,300
+./kinetics_subset/archery/BeSwkzhLwSc_000011_000021,archery,341,190
+./kinetics_subset/playing ukulele/sriuUXebIbU_000012_000022,playing ukulele,342,152
+./kinetics_subset/spray painting/2BBn3DzQHmE_000416_000426,spray painting,343,300
+./kinetics_subset/spray painting/B2KtYZOSsu4_000001_000011,spray painting,343,197
+./kinetics_subset/shooting basketball/MB17NbvTzK4_000002_000012,shooting basketball,344,250
+./kinetics_subset/shooting basketball/NBw6x_8FszI_000123_000133,shooting basketball,344,300
+./kinetics_subset/contact juggling/hhXhsMx33T4_000010_000020,contact juggling,345,300
+./kinetics_subset/javelin throw/aNVaHLl3fjk_000002_000012,javelin throw,346,256
+./kinetics_subset/javelin throw/yimS7fmRQU8_000002_000012,javelin throw,346,139
+./kinetics_subset/playing harmonica/7JKAUB1ZUbg_000004_000014,playing harmonica,347,300
+./kinetics_subset/motorcycling/pZZVzBD8bZY_000075_000085,motorcycling,348,250
+./kinetics_subset/motorcycling/VzcpGQm_1V8_000129_000139,motorcycling,348,120
+./kinetics_subset/skydiving/GFmejF5gXqg_000200_000210,skydiving,349,300
+./kinetics_subset/skydiving/IAsoQV0F48c_000146_000156,skydiving,349,300
+./kinetics_subset/massaging feet/5YO35sX60Sk_000006_000016,massaging feet,350,274
+./kinetics_subset/playing poker/CRmi8FHcYzg_000013_000023,playing poker,351,150
+./kinetics_subset/playing poker/uhhoRhS-BMI_000365_000375,playing poker,351,300
+./kinetics_subset/side kick/Lti-qXl2fXc_000000_000010,side kick,352,208
+./kinetics_subset/playing squash or racquetball/69xYsLHP1ik_000004_000014,playing squash or racquetball,353,300
+./kinetics_subset/playing squash or racquetball/bDlnrPoP2dY_000124_000134,playing squash or racquetball,353,300
+./kinetics_subset/golf driving/8qNOLE8Du7c_000003_000013,golf driving,354,80
+./kinetics_subset/golf driving/VMUQHjoRjUU_000027_000037,golf driving,354,193
+./kinetics_subset/playing didgeridoo/WqipRJG0QxQ_000016_000026,playing didgeridoo,355,300
+./kinetics_subset/water sliding/G14CJdDtte4_000072_000082,water sliding,356,250
+./kinetics_subset/water sliding/E8D-aEUiChs_000002_000012,water sliding,356,210
+./kinetics_subset/trimming trees/THZq7Bwsdeo_000150_000160,trimming trees,357,300
+./kinetics_subset/dancing macarena/kzO4sX80A_A_000039_000049,dancing macarena,358,300
+./kinetics_subset/dancing macarena/Y-NHEpYJaf8_000046_000056,dancing macarena,358,300
+./kinetics_subset/catching or throwing softball/XC3xLYqCmeY_000005_000015,catching or throwing softball,359,300
+./kinetics_subset/catching or throwing softball/t2m4tNEVxzE_000004_000014,catching or throwing softball,359,199
+./kinetics_subset/eating hotdog/kUPHqvtm70Y_000043_000053,eating hotdog,360,300
+./kinetics_subset/changing wheel/4oyV_yblhEo_000042_000052,changing wheel,361,250
+./kinetics_subset/changing wheel/3QhnzaOGtJY_000177_000187,changing wheel,361,240
+./kinetics_subset/tapping guitar/bV2A6cLWqO8_000194_000204,tapping guitar,362,300
+./kinetics_subset/playing basketball/uPMrdDdZ688_000107_000117,playing basketball,363,300
+./kinetics_subset/playing organ/mIqVA7Zwfrs_000014_000024,playing organ,364,124
+./kinetics_subset/playing organ/T8HPUVKhA4U_000000_000010,playing organ,364,150
+./kinetics_subset/blasting sand/zVdzvzhIucg_000020_000030,blasting sand,365,300
+./kinetics_subset/stretching arm/IZd3l8od06U_000002_000012,stretching arm,366,250
+./kinetics_subset/stretching arm/GhEZt5l4cLg_000088_000098,stretching arm,366,120
+./kinetics_subset/playing ice hockey/nzqlP05Lkz8_000003_000013,playing ice hockey,367,250
+./kinetics_subset/playing ice hockey/I6_2k-tsXG0_000186_000196,playing ice hockey,367,300
+./kinetics_subset/bending metal/Tt3EdH8xjTg_000000_000010,bending metal,368,300
+./kinetics_subset/bee keeping/yfkNCKlVOoY_000068_000078,bee keeping,369,250
+./kinetics_subset/bee keeping/dtp3QAMnjLM_000286_000296,bee keeping,369,300
+./kinetics_subset/cartwheeling/lY1SyjWEF8A_000003_000013,cartwheeling,370,54
+./kinetics_subset/doing aerobics/7zc_qvG2bAw_000200_000210,doing aerobics,371,300
+./kinetics_subset/doing aerobics/pLIXAeqhzHo_000190_000200,doing aerobics,371,300
+./kinetics_subset/juggling soccer ball/yb97WWwe-nM_000018_000028,juggling soccer ball,372,240
+./kinetics_subset/juggling soccer ball/Cx4gYKkTPys_000032_000042,juggling soccer ball,372,300
+./kinetics_subset/ice climbing/zZqEGa1dDWM_000346_000356,ice climbing,373,248
+./kinetics_subset/playing xylophone/kDNG-8C2Jrs_000000_000010,playing xylophone,374,300
+./kinetics_subset/playing xylophone/vZJqc9BIoZM_000038_000048,playing xylophone,374,300
+./kinetics_subset/shredding paper/I4RIyZDsltM_000005_000015,shredding paper,375,300
+./kinetics_subset/pull ups/Iw3X6M-uzbg_000001_000011,pull ups,376,250
+./kinetics_subset/pull ups/YVVns1LhKnM_000057_000067,pull ups,376,300
+./kinetics_subset/playing accordion/OtUxN7tXEXU_000049_000059,playing accordion,377,300
+./kinetics_subset/playing accordion/WIYKkrqF1rw_000009_000019,playing accordion,377,300
+./kinetics_subset/surfing water/bv23htbOMMs_000004_000014,surfing water,378,300
+./kinetics_subset/cutting pineapple/xr682TMLyNw_000151_000161,cutting pineapple,379,300
+./kinetics_subset/cutting pineapple/7y25zas5IqM_000248_000258,cutting pineapple,379,300
+./kinetics_subset/finger snapping/qwXlsKWUUEk_000004_000014,finger snapping,380,300
+./kinetics_subset/vault/TA7nm2dPZVc_000000_000010,vault,381,297
+./kinetics_subset/vault/sZCx2Ms9tmk_000044_000054,vault,381,300
+./kinetics_subset/washing hair/W5MeD3nRx9E_000393_000403,washing hair,382,300
+./kinetics_subset/washing hair/eXgiUWDs58Y_000059_000069,washing hair,382,300
+./kinetics_subset/jumpstyle dancing/u4tNQHPIjIk_000070_000080,jumpstyle dancing,383,300
+./kinetics_subset/whistling/VoHHr6R6VWw_000101_000111,whistling,384,250
+./kinetics_subset/whistling/U19gsdcYRwg_000009_000019,whistling,384,150
+./kinetics_subset/braiding hair/IyAGSR-DQYQ_000108_000118,braiding hair,385,300
+./kinetics_subset/springboard diving/RJe9feXkZNM_000008_000018,springboard diving,386,250
+./kinetics_subset/springboard diving/ZpYNqEbzJec_000002_000012,springboard diving,386,276
+./kinetics_subset/peeling potatoes/NuYxk3bUGik_000046_000056,peeling potatoes,387,240
+./kinetics_subset/peeling potatoes/FBH02_v6TK0_000012_000022,peeling potatoes,387,300
+./kinetics_subset/carving pumpkin/Ph-FUU2fRRo_000023_000033,carving pumpkin,388,243
+./kinetics_subset/cooking chicken/wOxt6xI-uEM_000536_000546,cooking chicken,389,300
+./kinetics_subset/cooking chicken/ElQ1uyAY0P0_000326_000336,cooking chicken,389,250
+./kinetics_subset/kitesurfing/S54D6OCbkbM_000044_000054,kitesurfing,390,300
+./kinetics_subset/eating spaghetti/KZaFbvwl3cs_000255_000265,eating spaghetti,391,135
+./kinetics_subset/eating spaghetti/-ZYl4Sw2SSk_000243_000253,eating spaghetti,391,300
+./kinetics_subset/bookbinding/ynQtdN15S0c_000463_000473,bookbinding,392,300
+./kinetics_subset/bookbinding/GjtR9KZbV3Y_000494_000504,bookbinding,392,300
+./kinetics_subset/sweeping floor/Q4h_iPt1uwU_000003_000013,sweeping floor,393,300
+./kinetics_subset/assembling computer/QSwo3ekbNoQ_000734_000744,assembling computer,394,300
+./kinetics_subset/assembling computer/4q1ckar2eEg_001470_001480,assembling computer,394,300
+./kinetics_subset/writing/R-sTFq_J6vI_000062_000072,writing,395,300
+./kinetics_subset/using remote controller (not gaming)/Bj7_KWKEXp8_000046_000056,using remote controller (not gaming),396,300
+./kinetics_subset/using remote controller (not gaming)/mA0da8MzwiY_000086_000096,using remote controller (not gaming),396,250
+./kinetics_subset/bouncing on trampoline/k3RQEXLtwdQ_000186_000196,bouncing on trampoline,397,300
+./kinetics_subset/waxing chest/291EgaO_F94_000049_000059,waxing chest,398,300
+./kinetics_subset/counting money/1rNPVU8Ookc_000013_000023,counting money,399,300
+./kinetics_subset/counting money/T9LhYz-yD6o_000005_000015,counting money,399,300
