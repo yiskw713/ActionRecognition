@@ -6,7 +6,7 @@ spatial_msc: False     # if you use spatial multi-scale input
 temporal_msc: False    # if you use temporal multi-scale input
 
 n_classes: 400
-batch_size: 8
+batch_size: 16
 input_frames: 64
 height: 224
 width: 224
