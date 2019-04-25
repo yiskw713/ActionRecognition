@@ -1,10 +1,10 @@
-model: slowfast50
+model: slowfast18
 
 class_weight_flag: False # if you use class weight to calculate cross entropy or not
 writer_flag: True # if you use tensorboardx or not
 
-train_csv: ./train.csv
-val_csv: ./val.csv
+train_csv: ./utils/train.csv
+val_csv: ./utils/val.csv
 
 n_classes: 400
 batch_size: 8
@@ -12,8 +12,8 @@ input_frames: 64
 height: 224
 width: 224
 num_workers: 4
-max_epoch: 200
+max_epoch: 250
 learning_rate: 0.001
 poly_power: 0.9
 
-result_path: ./result/slowfast50
+result_path: ./result/slowfast18

@@ -200,6 +200,13 @@ class SlowFast(nn.Module):
         return nn.Sequential(*layers)
 
 
+def resnet18(**kwargs):
+    """Constructs a ResNet-50 model.
+    """
+    model = SlowFast(Bottleneck, [2, 2, 2, 2], **kwargs)
+    return model
+
+
 def resnet50(**kwargs):
     """Constructs a ResNet-50 model.
     """

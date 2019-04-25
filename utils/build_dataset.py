@@ -17,7 +17,7 @@ def get_arguments():
     parser.add_argument(
         '--div', type=bool, default=False, help='whether train dir and test dir are divided or not.')
     parser.add_argument(
-        '--csv_path', type=str, default='./', help='pash where you want to save csv files')
+        '--csv_path', type=str, default='./utils', help='pash where you want to save csv files')
 
     return parser.parse_args()
 

@@ -12,7 +12,8 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, ToTensor, RandomCrop, Normalize
 
 from utils.dataset import Kinetics
-from model.resnet import resnet18
+from utils.mean import get_mean, get_std
+from model import resnet
 from model import slowfast
 
 
@@ -130,9 +131,7 @@ def main():
         writer = None
 
     # DataLoaders
-    # normalizer: mean and std comes from ImageNet
-    normalize = Normalize(
-        mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    normalize = Normalize(mean=get_mean(), std=get_std())
 
     train_data = Kinetics(
         CONFIG,
@@ -173,15 +172,13 @@ def main():
 
     if CONFIG.model == 'resnet18':
         print(CONFIG.model + ' will be used.')
-        model = resnet18(
-            sample_size=CONFIG.height, sample_duration=CONFIG.input_frames, num_classes=CONFIG.n_classes)
+        model = resnet18(num_classes=CONFIG.n_classes)
     elif CONFIG.model == 'slowfast50':
         print(CONFIG.model + ' will be used.')
         model = slowfast.resnet50(class_num=CONFIG.n_classes)
     else:
         print('resnet18 will be used.')
-        model = resnet18(
-            sample_size=CONFIG.height, sample_duration=CONFIG.n_frames, num_classes=CONFIG.n_classes)
+        model = resnet18(num_classes=CONFIG.n_classes)
 
     model.to(args.device)
     print('Success!')
@@ -191,7 +188,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
 
     # train and validate model
-    print('------------Start training------------\n')
+    print('\n------------Start training------------\n')
     losses_train = []
     losses_val = []
     top1_accuracy = []
@@ -205,54 +202,48 @@ def main():
             optimizer, CONFIG.learning_rate, epoch, max_iter=CONFIG.max_epoch, power=CONFIG.poly_power)
 
         # training
-        # loss_train = train(
-        #     model, train_loader, criterion, optimizer, args.device)
-        # losses_train.append(loss_train)
+        loss_train = train(
+            model, train_loader, criterion, optimizer, args.device)
+        losses_train.append(loss_train)
 
         # validation
-        if epoch % 3 == 2:
-            loss_val, top1, top5 = validation(
-                model, val_loader, criterion, CONFIG, args.device)
-            losses_val.append(loss_val)
-            top1_accuracy.append(top1)
-            top5_accuracy.append(top5)
+        loss_val, top1, top5 = validation(
+            model, val_loader, criterion, CONFIG, args.device)
+        losses_val.append(loss_val)
+        top1_accuracy.append(top1)
+        top5_accuracy.append(top5)
 
-            if best_top1_accuracy < top1_accuracy[-1]:
-                best_top1_accuracy = top1_accuracy[-1]
-                torch.save(
-                    model.state_dict(), os.path.join(CONFIG.result_path, '/best_top1_accuracy_model.prm'))
+        if best_top1_accuracy < top1_accuracy[-1]:
+            best_top1_accuracy = top1_accuracy[-1]
+            torch.save(
+                model.state_dict(), os.path.join(CONFIG.result_path, 'best_top1_accuracy_model.prm'))
 
-            if best_top5_accuracy < top5_accuracy[-1]:
-                best_top5_accuracy = top5_accuracy[-1]
-                torch.save(
-                    model.state_dict(), os.path.join(CONFIG.result_path, '/best_top5_accuracy_model.prm'))
+        if best_top5_accuracy < top5_accuracy[-1]:
+            best_top5_accuracy = top5_accuracy[-1]
+            torch.save(
+                model.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
 
         # save model per 10 epoch
         if epoch % 10 == 0 and epoch != 0:
             torch.save(
-                model.state_dict(), os.path.join(CONFIG.result_path, '/epoch_{}_model.prm'.format(epoch)))
+                model.state_dict(), os.path.join(CONFIG.result_path, 'epoch_{}_model.prm'.format(epoch)))
 
-        # # tensorboardx
-        # if writer is not None:
-        #     writer.add_scalar("loss_train", losses_train[-1], epoch)
+        # tensorboardx
+        if writer is not None:
+            writer.add_scalar("loss_train", losses_train[-1], epoch)
 
-        #     if epoch % 5 == 4:
-        #         writer.add_scalar('loss_val', losses_val[-1], epoch)
-        #         writer.add_scalars("iou", {'top1_accuracy': top1_accuracy[-1],
-        #                                    'top5_accuracy': top5_accuracy[-1]}, epoch)
+            writer.add_scalar('loss_val', losses_val[-1], epoch)
+            writer.add_scalars("iou", {
+                'top1_accuracy': top1_accuracy[-1],
+                'top5_accuracy': top5_accuracy[-1]}, epoch)
 
-        if epoch % 5 == 4:
-            print(
-                'epoch: {}\tloss train: {:.5f}\tloss val: {:.5f}\ttop1_accuracy: {:.5f}\ttop5_accuracy: {:.5f}'
-                .format(epoch, losses_train[-1], losses_val[-1], top1_accuracy[-1], top5_accuracy[-1])
-            )
-        # else:
-        #     print(
-        #         'epoch: {}\tloss train: {:.5f}'.format(epoch, losses_train[-1])
-        #     )
+        print(
+            'epoch: {}\tloss train: {:.5f}\tloss val: {:.5f}\ttop1_accuracy: {:.5f}\ttop5_accuracy: {:.5f}'
+            .format(epoch, losses_train[-1], losses_val[-1], top1_accuracy[-1], top5_accuracy[-1])
+        )
 
     torch.save(
-        model.state_dict(), os.path.join(CONFIG.result_path, '/final_model.prm'))
+        model.state_dict(), os.path.join(CONFIG.result_path, 'final_model.prm'))
 
 
 if __name__ == '__main__':
