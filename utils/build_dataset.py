@@ -1,4 +1,5 @@
 import glob
+import os
 import pandas as pd
 import argparse
 
@@ -10,7 +11,7 @@ def get_arguments():
     """
 
     parser = argparse.ArgumentParser(
-        description='make csv files for training and test')
+        description='make csv files for training and validation')
     parser.add_argument(
         'dataset_dir', type=str, help='path of the dataset directory')
     parser.add_argument(
@@ -26,13 +27,17 @@ def get_arguments():
 args = get_arguments()
 
 dataset_dir = args.dataset_dir
-class_dir = glob.glob(dataset_dir + '/*')
+class_dir = glob.glob(os.path.join(dataset_dir, '*'))
+
+cls = []
+for c in class_dir:
+    cls.append(os.path.basename(c))
 
 id_to_cls = {}
 cls_to_id = {}
 
-for i, cls in enumerate(class_dir):
-    id_to_cls[i] = cls[18:]
+for i, c in enumerate(cls):
+    id_to_cls[i] = c
 
 for key, val in id_to_cls.items():
     cls_to_id[val] = key
@@ -62,10 +67,10 @@ video_list_train = []
 class_list_train = []
 id_list_train = []
 n_frames_list_train = []
-video_list_test = []
-class_list_test = []
-id_list_test = []
-n_frames_list_test = []
+video_list_val = []
+class_list_val = []
+id_list_val = []
+n_frames_list_val = []
 
 for i, (m, c, idx, f) in enumerate(zip(video_list, class_list, id_list, n_frames_list)):
     if i % 5 != 0:
@@ -74,10 +79,10 @@ for i, (m, c, idx, f) in enumerate(zip(video_list, class_list, id_list, n_frames
         id_list_train.append(idx)
         n_frames_list_train.append(f)
     else:
-        video_list_test.append(m)
-        class_list_test.append(c)
-        id_list_test.append(idx)
-        n_frames_list_test.append(f)
+        video_list_val.append(m)
+        class_list_val.append(c)
+        id_list_val.append(idx)
+        n_frames_list_val.append(f)
 
 
 df_train = pd.DataFrame({
@@ -89,13 +94,19 @@ df_train = pd.DataFrame({
 )
 
 
-df_test = pd.DataFrame({
-    'video': video_list_test,
-    'n_frames': n_frames_list_test,
-    'class': class_list_test,
-    'class_id': id_list_test},
+df_val = pd.DataFrame({
+    'video': video_list_val,
+    'n_frames': n_frames_list_val,
+    'class': class_list_val,
+    'class_id': id_list_val},
     columns=['video', 'class', 'class_id', 'n_frames']
 )
 
-df_train.to_csv(args.csv_path + 'train.csv', index=None)
-df_test.to_csv(args.csv_path + 'test.csv', index=None)
+
+# remove videos which have only few frames
+df_train = df_train[df_train['n_frames'] >= 150]
+df_val = df_val[df_val['n_frames'] >= 150]
+
+
+df_train.to_csv(os.path.join(args.csv_path, 'train.csv'), index=None)
+df_val.to_csv(os.path.join(args.csv_path, 'val.csv'), index=None)
