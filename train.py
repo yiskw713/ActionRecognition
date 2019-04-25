@@ -1,3 +1,4 @@
+import adabound
 import argparse
 import os
 import torch
@@ -11,6 +12,7 @@ from tensorboardX import SummaryWriter
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, ToTensor, RandomCrop, Normalize
 
+from utils.class_weight import get_class_weight
 from utils.dataset import Kinetics
 from utils.mean import get_mean, get_std
 from model import resnet
@@ -98,26 +100,6 @@ def validation(model, val_loader, criterion, config, device):
     return val_loss, top1, top5
 
 
-def poly_lr_scheduler(
-        optimizer, init_lr, iter, lr_decay_iter=1,
-        max_iter=100, power=0.9
-):
-    """Polynomial decay of learning rate
-        :param init_lr is base learning rate
-        :param iter is a current iteration
-        :param lr_decay_iter how frequently decay occurs, default is 1
-        :param max_iter is number of maximum iterations
-        :param power is a polymomial power
-    """
-
-    if iter % lr_decay_iter or iter > max_iter:
-        pass
-    else:
-        lr = init_lr * (1 - iter / max_iter)**power
-        for param_group in optimizer.param_groups:
-            param_group['lr'] = lr
-
-
 def main():
     args = get_arguments()
 
@@ -168,27 +150,61 @@ def main():
     )
 
     # load model
-    print('\n------------Loading Model------------\n')
+    print('\n------------------------Loading Model------------------------\n')
 
     if CONFIG.model == 'resnet18':
-        print(CONFIG.model + ' will be used.')
-        model = resnet18(num_classes=CONFIG.n_classes)
-    elif CONFIG.model == 'slowfast50':
-        print(CONFIG.model + ' will be used.')
-        model = slowfast.resnet50(class_num=CONFIG.n_classes)
+        print(CONFIG.model + ' will be used as a model.')
+        model = resnet.resnet18(num_classes=CONFIG.n_classes)
+    elif CONFIG.model == 'slowfast18':
+        print(CONFIG.model + ' will be used as a model.')
+        model = slowfast.resnet18(class_num=CONFIG.n_classes)
     else:
-        print('resnet18 will be used.')
-        model = resnet18(num_classes=CONFIG.n_classes)
+        print('resnet18 will be used as a model.')
+        model = resnet.resnet18(num_classes=CONFIG.n_classes)
 
     model.to(args.device)
-    print('Success!')
 
-    # set optimizer, criterion
-    optimizer = optim.Adam(model.parameters(), lr=CONFIG.learning_rate)
-    criterion = nn.CrossEntropyLoss()
+    # set optimizer, lr_scheduler
+    if CONFIG.optimizer == 'Adam':
+        print(CONFIG.optimizer + ' will be used as an optimizer.')
+        optimizer = optim.Adam(model.parameters(), lr=CONFIG.learning_rate)
+    elif CONFIG.optimizer == 'SGD':
+        print(CONFIG.optimizer + ' will be used as an optimizer.')
+        optimizer = optim.SGD(
+            model.parameters(),
+            lr=CONFIG.learning_rate,
+            momentum=CONFIG.momentum,
+            dampening=CONFIG.dampening,
+            weight_decay=CONFIG.weight_decay,
+            nesterov=CONFIG.nesterov)
+    elif CONFIG.optimizer == 'AdaBound':
+        print(CONFIG.optimizer + ' will be used as an optimizer.')
+        optimizer = adabound.AdaBound(
+            model.parameters(), lr=CONFIG.learning_rate, final_lr=CONFIG.final_lr)
+    else:
+        print('There is no optimizer which suits to your option. \
+            Instead, SGD will be used as an optimizer.')
+        optimizer = optim.SGD(
+            model.parameters(),
+            lr=CONFIG.learning_rate,
+            momentum=CONFIG.momentum,
+            dampening=CONFIG.dampening,
+            weight_decay=CONFIG.weight_decay,
+            nesterov=CONFIG.nesterov)
+
+    # learning rate scheduler
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, 'min', patience=CONFIG.lr_patience)
+
+    # criterion for loss
+    if CONFIG.class_weight:
+        criterion = nn.CrossEntropyLoss(
+            weight=get_class_weight().to(args.device))
+    else:
+        criterion = nn.CrossEntropyLoss()
 
     # train and validate model
-    print('\n------------Start training------------\n')
+    print('\n------------------------Start training------------------------\n')
     losses_train = []
     losses_val = []
     top1_accuracy = []
@@ -197,10 +213,6 @@ def main():
     best_top5_accuracy = 0.0
 
     for epoch in range(CONFIG.max_epoch):
-
-        poly_lr_scheduler(
-            optimizer, CONFIG.learning_rate, epoch, max_iter=CONFIG.max_epoch, power=CONFIG.poly_power)
-
         # training
         loss_train = train(
             model, train_loader, criterion, optimizer, args.device)
@@ -209,10 +221,12 @@ def main():
         # validation
         loss_val, top1, top5 = validation(
             model, val_loader, criterion, CONFIG, args.device)
+        scheduler.step(loss_val)
         losses_val.append(loss_val)
         top1_accuracy.append(top1)
         top5_accuracy.append(top5)
 
+        # save a model if topk accuracy is higher than ever
         if best_top1_accuracy < top1_accuracy[-1]:
             best_top1_accuracy = top1_accuracy[-1]
             torch.save(
@@ -223,7 +237,7 @@ def main():
             torch.save(
                 model.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
 
-        # save model per 10 epoch
+        # save a model per 10 epoch
         if epoch % 10 == 0 and epoch != 0:
             torch.save(
                 model.state_dict(), os.path.join(CONFIG.result_path, 'epoch_{}_model.prm'.format(epoch)))

@@ -24,4 +24,4 @@ final_lr: 0.1         # final learning rate for AdaBound
 
 train_csv: ./dataset/train.csv
 val_csv: ./dataset/val.csv
-result_path: ./result/slowfast18
+result_path: ./result/slowfast18/sgd

@@ -13,8 +13,8 @@ width: 224
 num_workers: 4
 max_epoch: 250
 
-optimizer: SGD
-learning_rate: 0.1
+optimizer: AdaBound
+learning_rate: 0.001
 lr_patience: 10       # Patience of LR scheduler
 momentum: 0.9         # momentum of SGD
 dampening: 0.9        # dampening for momentum of SGD
@@ -24,4 +24,4 @@ final_lr: 0.1         # final learning rate for AdaBound
 
 train_csv: ./dataset/train.csv
 val_csv: ./dataset/val.csv
-result_path: ./result/slowfast18
+result_path: ./result/slowfast18/adabound
