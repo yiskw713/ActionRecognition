@@ -7,13 +7,13 @@ temporal_msc: False    # if you use temporal multi-scale input
 
 n_classes: 400
 batch_size: 32
-input_frames: 16
+input_frames: 64
 height: 224
 width: 224
 num_workers: 4
 max_epoch: 250
 
-optimizer: SGD
+optimizer: AdaBound
 learning_rate: 0.03
 lr_patience: 10       # Patience of LR scheduler
 momentum: 0.9         # momentum of SGD
@@ -24,4 +24,4 @@ final_lr: 0.1         # final learning rate for AdaBound
 
 train_csv: ./aolab/train.csv
 val_csv: ./aolab/val.csv
-result_path: ./result/resnet18
+result_path: ./result/resnet18/adabound_64f
