@@ -10,7 +10,7 @@ batch_size: 64
 input_frames: 16
 height: 224
 width: 224
-num_workers: 16
+num_workers: 4
 max_epoch: 250
 
 optimizer: SGD
