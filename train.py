@@ -28,8 +28,6 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='train a network for action recognition')
     parser.add_argument('config', type=str, help='path of a config file')
-    parser.add_argument('--device', type=str, default='cpu',
-                        help='choose a device you want to use')
 
     return parser.parse_args()
 
@@ -162,7 +160,11 @@ def main():
         print('resnet18 will be used as a model.')
         model = resnet.resnet18(num_classes=CONFIG.n_classes)
 
-    model.to(args.device)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model.to(device)
+    if device == 'cuda':
+        model = torch.nn.DataParallel(model) # make parallel
+        torch.backends.cudnn.benchmark = True
 
     # set optimizer, lr_scheduler
     if CONFIG.optimizer == 'Adam':
@@ -199,7 +201,7 @@ def main():
     # criterion for loss
     if CONFIG.class_weight:
         criterion = nn.CrossEntropyLoss(
-            weight=get_class_weight().to(args.device))
+            weight=get_class_weight().to(device))
     else:
         criterion = nn.CrossEntropyLoss()
 
@@ -215,12 +217,12 @@ def main():
     for epoch in range(CONFIG.max_epoch):
         # training
         loss_train = train(
-            model, train_loader, criterion, optimizer, args.device)
+            model, train_loader, criterion, optimizer, device)
         losses_train.append(loss_train)
 
         # validation
         loss_val, top1, top5 = validation(
-            model, val_loader, criterion, CONFIG, args.device)
+            model, val_loader, criterion, CONFIG, device)
         scheduler.step(loss_val)
         losses_val.append(loss_val)
         top1_accuracy.append(top1)
