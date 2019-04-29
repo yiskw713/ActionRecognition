@@ -88,8 +88,8 @@ def validation(model, val_loader, criterion, config, device):
             val_loss += criterion(h, t).item()
             n, topk = accuracy(h, t, topk=(1, 5))
             n_samples += n
-            top1 += topk[0]
-            top5 += topk[1]
+            top1 += topk[0].item()
+            top5 += topk[1].item()
 
         val_loss /= len(val_loader)
         top1 /= n_samples
