@@ -28,8 +28,6 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='train a network for action recognition')
     parser.add_argument('config', type=str, help='path of a config file')
-    parser.add_argument('--device', type=str, default='cpu',
-                        help='choose a device you want to use')
 
     return parser.parse_args()
 
@@ -90,8 +88,8 @@ def validation(model, val_loader, criterion, config, device):
             val_loss += criterion(h, t).item()
             n, topk = accuracy(h, t, topk=(1, 5))
             n_samples += n
-            top1 += topk[0]
-            top5 += topk[1]
+            top1 += topk[0].item()
+            top5 += topk[1].item()
 
         val_loss /= len(val_loader)
         top1 /= n_samples
@@ -162,7 +160,11 @@ def main():
         print('resnet18 will be used as a model.')
         model = resnet.resnet18(num_classes=CONFIG.n_classes)
 
-    model.to(args.device)
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model.to(device)
+    if device == 'cuda':
+        model = torch.nn.DataParallel(model)  # make parallel
+        torch.backends.cudnn.benchmark = True
 
     # set optimizer, lr_scheduler
     if CONFIG.optimizer == 'Adam':
@@ -193,13 +195,14 @@ def main():
             nesterov=CONFIG.nesterov)
 
     # learning rate scheduler
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, 'min', patience=CONFIG.lr_patience)
+    if CONFIG.optimizer == 'SGD':
+        scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, 'min', patience=CONFIG.lr_patience)
 
     # criterion for loss
     if CONFIG.class_weight:
         criterion = nn.CrossEntropyLoss(
-            weight=get_class_weight().to(args.device))
+            weight=get_class_weight().to(device))
     else:
         criterion = nn.CrossEntropyLoss()
 
@@ -215,13 +218,16 @@ def main():
     for epoch in range(CONFIG.max_epoch):
         # training
         loss_train = train(
-            model, train_loader, criterion, optimizer, args.device)
+            model, train_loader, criterion, optimizer, device)
         losses_train.append(loss_train)
 
         # validation
         loss_val, top1, top5 = validation(
-            model, val_loader, criterion, CONFIG, args.device)
-        scheduler.step(loss_val)
+            model, val_loader, criterion, CONFIG, device)
+
+        if CONFIG.optimizer == 'SGD':
+            scheduler.step(loss_val)
+
         losses_val.append(loss_val)
         top1_accuracy.append(top1)
         top5_accuracy.append(top5)

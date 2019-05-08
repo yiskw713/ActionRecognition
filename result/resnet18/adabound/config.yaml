@@ -1,6 +1,6 @@
 model: resnet18
 
-class_weight: false    # if you use class weight to calculate cross entropy or not
+class_weight: True    # if you use class weight to calculate cross entropy or not
 writer_flag: True      # if you use tensorboardx or not
 spatial_msc: False     # if you use spatial multi-scale input
 temporal_msc: False    # if you use temporal multi-scale input
@@ -11,10 +11,10 @@ input_frames: 16
 height: 224
 width: 224
 num_workers: 4
-max_epoch: 250
+max_epoch: 200
 
 optimizer: AdaBound
-learning_rate: 0.03
+learning_rate: 0.001
 lr_patience: 10       # Patience of LR scheduler
 momentum: 0.9         # momentum of SGD
 dampening: 0.0        # dampening for momentum of SGD
