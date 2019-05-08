@@ -5,10 +5,12 @@ Github: https://github.com/r1ch88/SlowFastNetworks
 Paper: SlowFast Networks for Video Recognition, Christoph Feichtenhofer, Haoqi Fan, Jitendra Malik, Kaiming He
 arXiv: https://arxiv.org/abs/1812.03982
 
+
 """
 
 import torch
 import torch.nn as nn
+from .non_local_embedded_gaussian import NONLocalBlock3D
 
 __all__ = ['resnet50', 'resnet101', 'resnet152', 'resnet200']
 
@@ -59,12 +61,15 @@ class Bottleneck(nn.Module):
 
 
 class SlowFast(nn.Module):
-    def __init__(self, block=Bottleneck, layers=[3, 4, 6, 3], class_num=10, dropout=0.5):
+    def __init__(self, block=Bottleneck, layers=[3, 4, 6, 3], class_num=10, dropout=0.5, non_local=False):
         super(SlowFast, self).__init__()
 
+        # if you want to use non-local module. given by list.
+        self.non_local = non_local
+
         self.fast_inplanes = 8
-        self.fast_conv1 = nn.Conv3d(3, 8, kernel_size=(
-            5, 7, 7), stride=(1, 2, 2), padding=(2, 3, 3), bias=False)
+        self.fast_conv1 = nn.Conv3d(3, 8, kernel_size=(5, 7, 7),
+                                    stride=(1, 2, 2), padding=(2, 3, 3), bias=False)
         self.fast_bn1 = nn.BatchNorm3d(8)
         self.fast_relu = nn.ReLU(inplace=True)
         self.fast_maxpool = nn.MaxPool3d(kernel_size=(
@@ -97,11 +102,12 @@ class SlowFast(nn.Module):
         self.slow_res2 = self._make_layer_slow(
             block, 64, layers[0], head_conv=1)
         self.slow_res3 = self._make_layer_slow(
-            block, 128, layers[1], stride=2, head_conv=1)
+            block, 128, layers[1], stride=2, head_conv=1, non_local=self.non_local)
         self.slow_res4 = self._make_layer_slow(
-            block, 256, layers[2], stride=2, head_conv=3)
+            block, 256, layers[2], stride=2, head_conv=3, non_local=self.non_local)
         self.slow_res5 = self._make_layer_slow(
             block, 512, layers[3], stride=2, head_conv=3)
+
         self.dp = nn.Dropout(dropout)
         self.fc = nn.Linear(self.fast_inplanes + 2048, class_num, bias=False)
 
@@ -177,7 +183,7 @@ class SlowFast(nn.Module):
                                 planes, head_conv=head_conv))
         return nn.Sequential(*layers)
 
-    def _make_layer_slow(self, block, planes, blocks, stride=1, head_conv=1):
+    def _make_layer_slow(self, block, planes, blocks, stride=1, head_conv=1, non_local=False):
         downsample = None
         if stride != 1 or self.slow_inplanes != planes * block.expansion:
             downsample = nn.Sequential(
@@ -193,13 +199,17 @@ class SlowFast(nn.Module):
                             stride, downsample, head_conv=head_conv))
         self.slow_inplanes = planes * block.expansion
         for i in range(1, blocks):
+            if non_local and (i == blocks - 1):
+                layers.append(
+                    NONLocalBlock3D(in_channels=self.slow_inplanes, sub_sample=False))
             layers.append(block(self.slow_inplanes,
                                 planes, head_conv=head_conv))
 
-        self.slow_inplanes = planes * block.expansion + planes * block.expansion//8*2
+        self.slow_inplanes = planes * block.expansion + planes * block.expansion // 8 * 2
         return nn.Sequential(*layers)
 
 
+# SlowFast Network
 def resnet18(**kwargs):
     """Constructs a ResNet-18 model.
     """
@@ -232,4 +242,40 @@ def resnet200(**kwargs):
     """Constructs a ResNet-200 model.
     """
     model = SlowFast(Bottleneck, [3, 24, 36, 3], **kwargs)
+    return model
+
+
+# SlowFast Network with non local module
+def resnet18_NL(**kwargs):
+    """Constructs a ResNet-18 model.
+    """
+    model = SlowFast(Bottleneck, [2, 2, 2, 2], non_local=True, **kwargs)
+    return model
+
+
+def resnet50_NL(**kwargs):
+    """Constructs a ResNet-50 model.
+    """
+    model = SlowFast(Bottleneck, [3, 4, 6, 3], non_local=True, **kwargs)
+    return model
+
+
+def resnet101_NL(**kwargs):
+    """Constructs a ResNet-101 model.
+    """
+    model = SlowFast(Bottleneck, [3, 4, 23, 3], non_local=True, **kwargs)
+    return model
+
+
+def resnet152_NL(**kwargs):
+    """Constructs a ResNet-152 model.
+    """
+    model = SlowFast(Bottleneck, [3, 8, 36, 3], non_local=True, **kwargs)
+    return model
+
+
+def resnet200_NL(**kwargs):
+    """Constructs a ResNet-200 model.
+    """
+    model = SlowFast(Bottleneck, [3, 24, 36, 3], non_local=True, **kwargs)
     return model

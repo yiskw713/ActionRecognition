@@ -1,13 +1,12 @@
-model: slowfast18
+model: resnet18
+msc: Temporal  # if you use temporal multi-scale input
 
 class_weight: false    # if you use class weight to calculate cross entropy or not
 writer_flag: True      # if you use tensorboardx or not
-spatial_msc: False     # if you use spatial multi-scale input
-temporal_msc: False    # if you use temporal multi-scale input
 
 n_classes: 400
-batch_size: 8
-input_frames: 64
+batch_size: 64
+input_frames: 16
 height: 224
 width: 224
 num_workers: 4
@@ -24,4 +23,4 @@ final_lr: 0.1         # final learning rate for AdaBound
 
 train_csv: ./dataset/train.csv
 val_csv: ./dataset/val.csv
-result_path: ./result/slowfast18
+result_path: ./result/resnet18/temopral_msc

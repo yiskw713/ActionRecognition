@@ -1,9 +1,8 @@
 model: resnet18
+msc: False  # if you use temporal multi-scale input
 
 class_weight: false    # if you use class weight to calculate cross entropy or not
 writer_flag: True      # if you use tensorboardx or not
-spatial_msc: False     # if you use spatial multi-scale input
-temporal_msc: False    # if you use temporal multi-scale input
 
 n_classes: 400
 batch_size: 64
