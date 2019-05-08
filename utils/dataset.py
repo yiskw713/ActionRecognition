@@ -16,7 +16,7 @@ def train_video_loader(video_path, n_frames, input_frames=16):
         input_frames: the number of frames you want to input to the model. (default 16)
     """
 
-    start_frame = np.random.randint(1, n_frames - input_frames + 1)
+    start_frame = np.random.randint(1, n_frames - input_frames + 2)
     clip = []
     for i in range(start_frame, start_frame + input_frames):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))

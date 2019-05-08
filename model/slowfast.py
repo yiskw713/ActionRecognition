@@ -201,7 +201,7 @@ class SlowFast(nn.Module):
 
 
 def resnet18(**kwargs):
-    """Constructs a ResNet-50 model.
+    """Constructs a ResNet-18 model.
     """
     model = SlowFast(Bottleneck, [2, 2, 2, 2], **kwargs)
     return model
@@ -222,22 +222,14 @@ def resnet101(**kwargs):
 
 
 def resnet152(**kwargs):
-    """Constructs a ResNet-101 model.
+    """Constructs a ResNet-152 model.
     """
     model = SlowFast(Bottleneck, [3, 8, 36, 3], **kwargs)
     return model
 
 
 def resnet200(**kwargs):
-    """Constructs a ResNet-101 model.
+    """Constructs a ResNet-200 model.
     """
     model = SlowFast(Bottleneck, [3, 24, 36, 3], **kwargs)
     return model
-
-
-if __name__ == "__main__":
-    num_classes = 101
-    input_tensor = torch.autograd.Variable(torch.rand(1, 3, 64, 224, 224))
-    model = resnet50(class_num=num_classes)
-    output = model(input_tensor)
-    print(output.size())
