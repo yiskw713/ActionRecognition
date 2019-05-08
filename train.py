@@ -182,7 +182,7 @@ def main():
     elif CONFIG.optimizer == 'AdaBound':
         print(CONFIG.optimizer + ' will be used as an optimizer.')
         optimizer = adabound.AdaBound(
-            model.parameters(), lr=CONFIG.learning_rate, final_lr=CONFIG.final_lr)
+            model.parameters(), lr=CONFIG.learning_rate, final_lr=CONFIG.final_lr, weight_decay=CONFIG.weight_decay)
     else:
         print('There is no optimizer which suits to your option. \
             Instead, SGD will be used as an optimizer.')
