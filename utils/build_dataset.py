@@ -1,3 +1,4 @@
+import glob
 import os
 import pandas as pd
 import argparse
@@ -56,10 +57,14 @@ def main():
             video_dir = os.path.join(args.dataset_dir, df.iloc[i]['video'])
 
             # confirm if video directory and n_frames file exist or not.
-            if os.path.exists(video_dir) and os.path.exists(os.path.join(video_dir, 'n_frames')):
-                with open(os.path.join(video_dir, 'n_frames')) as f:
-                    n_frames = int(f.read())
-                    frames.append(n_frames)
+            if os.path.exists(video_dir):
+                if os.path.exists(os.path.join(video_dir, 'n_frames')):
+                    with open(os.path.join(video_dir, 'n_frames')) as f:
+                        n_frames = int(f.read())
+                        frames.append(n_frames)
+                else:
+                    videos = glob.glob(os.path.join(video_dir), '*.jpg')
+                    frames.append(len(videos))
             else:
                 # Videos which have few or no frames will be removed afterwards
                 frames.append(0)
