@@ -87,7 +87,7 @@ def validation(model, val_loader, criterion, config, device):
     top5 = 0.0
 
     with torch.no_grad():
-        for sample in tqdm.tqdm(val_loader, total=len(val_loader)):
+        for sample in val_loader:
             # temporal size is input_frames(default 16) * interger
             x = sample['clip']
             x = x.to(device)
