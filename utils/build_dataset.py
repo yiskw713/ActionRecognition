@@ -63,7 +63,7 @@ def main():
                         n_frames = int(f.read())
                         frames.append(n_frames)
                 else:
-                    videos = glob.glob(os.path.join(video_dir), '*.jpg')
+                    videos = glob.glob(os.path.join(video_dir, '*.jpg'))
                     frames.append(len(videos))
             else:
                 # Videos which have few or no frames will be removed afterwards
