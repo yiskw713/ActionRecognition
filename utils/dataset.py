@@ -12,11 +12,11 @@ def train_video_loader(video_path, n_frames, input_frames=16):
     A initial frame is randomly decided.
     Args:
         video_path: path for the video.
-        n_frames: the number of frames of the video. 
+        n_frames: the number of frames of the video
         input_frames: the number of frames you want to input to the model. (default 16)
     """
 
-    start_frame = np.random.randint(1, n_frames - input_frames + 2)
+    start_frame = np.random.randint(1, n_frames - input_frames + 1)
     clip = []
     for i in range(start_frame, start_frame + input_frames):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
@@ -68,10 +68,10 @@ class Kinetics(Dataset):
         return len(self.df)
 
     def __getitem__(self, idx):
-        video_path = self.df.iloc[idx, 0]
-        cls = self.df.iloc[idx, 1]
-        cls_id = torch.tensor(int(self.df.iloc[idx, 2])).long()
-        n_frames = int(self.df.iloc[idx, 3])
+        video_path = os.path.join(
+            self.config.dataset_dir, self.df.iloc[idx]['video'])
+        cls_id = torch.tensor(int(self.df.iloc[idx]['class_id'])).long()
+        n_frames = int(self.df.iloc[idx]['n_frames'])
 
         if self.mode == 'test':
             clip = test_video_loader(
@@ -88,7 +88,6 @@ class Kinetics(Dataset):
 
         sample = {
             'clip': clip,
-            'class': cls,
             'cls_id': cls_id,
         }
 

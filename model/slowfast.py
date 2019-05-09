@@ -12,8 +12,6 @@ import torch
 import torch.nn as nn
 from .non_local_embedded_gaussian import NONLocalBlock3D
 
-__all__ = ['resnet50', 'resnet101', 'resnet152', 'resnet200']
-
 
 class Bottleneck(nn.Module):
     expansion = 4

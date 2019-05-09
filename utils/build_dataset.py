@@ -1,7 +1,7 @@
-import glob
 import os
 import pandas as pd
 import argparse
+from class_label_map import get_class_label_map
 
 
 def get_arguments():
@@ -15,98 +15,66 @@ def get_arguments():
     parser.add_argument(
         'dataset_dir', type=str, help='path of the dataset directory')
     parser.add_argument(
-        '--div', type=bool, default=False, help='whether train dir and test dir are divided or not.')
+        '--orig_train_csv', type=str, default='./dataset/original/kinetics-400_train.csv', help='path to the original kinetics dataset train csv')
     parser.add_argument(
-        '--csv_path', type=str, default='./dataset', help='pash where you want to save csv files')
+        '--orig_val_csv', type=str, default='./dataset/original/kinetics-400_val.csv', help='path to the original kinetics dataset val csv')
+    parser.add_argument(
+        '--save_path', type=str, default='./dataset', help='path where you want to save csv files')
 
     return parser.parse_args()
 
 
-# TODO: programm when args.div == True.
+def main():
+    args = get_arguments()
 
-args = get_arguments()
+    df_train = pd.read_csv(args.orig_train_csv)
+    df_val = pd.read_csv(args.orig_val_csv)
 
-dataset_dir = args.dataset_dir
-class_dir = glob.glob(os.path.join(dataset_dir, '*'))
+    class_label_map = get_class_label_map()
 
-cls = []
-for c in class_dir:
-    cls.append(os.path.basename(c))
+    for df in [df_train, df_val]:
+        path = []
+        cls_id = []
 
-id_to_cls = {}
-cls_to_id = {}
+        for i in range(len(df)):
+            path.append(
+                df.iloc[i]['label'] + '/' + df.iloc[i]['youtube_id'] + '_' + str(df.iloc[i]['time_start']).zfill(6) + '_' + str(df.iloc[i]['time_end']).zfill(6))
+            cls_id.append(class_label_map[df.iloc[i]['label']])
 
-for i, c in enumerate(cls):
-    id_to_cls[i] = c
+        df['class_id'] = cls_id
+        df['video'] = path
 
-for key, val in id_to_cls.items():
-    cls_to_id[val] = key
+        # delete useless columns
+        del df['youtube_id']
+        del df['time_start']
+        del df['time_end']
+        del df['split']
+        del df['is_cc']
 
+        frames = []
+        for i in range(len(df)):
+            video_dir = os.path.join(args.dataset_dir, df.iloc[i]['video'])
 
-video_list = []
-class_list = []
-id_list = []
-n_frames_list = []
+            # confirm if video directory and n_frames file exist or not.
+            if os.path.exists(video_dir) and os.path.exists(os.path.join(video_dir, 'n_frames')):
+                with open(os.path.join(video_dir, 'n_frames')) as f:
+                    n_frames = int(f.read())
+                    frames.append(n_frames)
+            else:
+                # Videos which have few or no frames will be removed afterwards
+                frames.append(0)
 
-for key, val in id_to_cls.items():
-    # key => id
-    # val => class
+        df['n_frames'] = frames
 
-    video = glob.glob(dataset_dir + '/' + val + '/*')
-    video_list += video
-    id_list += [key for i in range(len(video))]
-    class_list += [id_to_cls[key] for i in range(len(video))]
+    # remove videos which have only few frames or no frames
+    df_train = df_train[df_train['n_frames'] >= 150]
+    df_val = df_val[df_val['n_frames'] >= 150]
 
-    for v in video:
-        with open(v + '/n_frames') as f:
-            n_frames = int(f.read())
-            n_frames_list.append(n_frames)
-
-
-video_list_train = []
-class_list_train = []
-id_list_train = []
-n_frames_list_train = []
-video_list_val = []
-class_list_val = []
-id_list_val = []
-n_frames_list_val = []
-
-for i, (m, c, idx, f) in enumerate(zip(video_list, class_list, id_list, n_frames_list)):
-    if i % 5 != 0:
-        video_list_train.append(m)
-        class_list_train.append(c)
-        id_list_train.append(idx)
-        n_frames_list_train.append(f)
-    else:
-        video_list_val.append(m)
-        class_list_val.append(c)
-        id_list_val.append(idx)
-        n_frames_list_val.append(f)
+    df_train.to_csv(
+        os.path.join(args.save_path, 'kinetics_400_train.csv'), index=None)
+    df_val.to_csv(
+        os.path.join(args.save_path, 'kinetics_400_val.csv'), index=None)
 
 
-df_train = pd.DataFrame({
-    'video': video_list_train,
-    'n_frames': n_frames_list_train,
-    'class': class_list_train,
-    'class_id': id_list_train},
-    columns=['video', 'class', 'class_id', 'n_frames']
-)
-
-
-df_val = pd.DataFrame({
-    'video': video_list_val,
-    'n_frames': n_frames_list_val,
-    'class': class_list_val,
-    'class_id': id_list_val},
-    columns=['video', 'class', 'class_id', 'n_frames']
-)
-
-
-# remove videos which have only few frames
-df_train = df_train[df_train['n_frames'] >= 150]
-df_val = df_val[df_val['n_frames'] >= 150]
-
-
-df_train.to_csv(os.path.join(args.csv_path, 'train.csv'), index=None)
-df_val.to_csv(os.path.join(args.csv_path, 'val.csv'), index=None)
+if __name__ == '__main__':
+    main()

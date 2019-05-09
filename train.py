@@ -12,11 +12,14 @@ from tensorboardX import SummaryWriter
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, ToTensor, RandomCrop, Normalize
 
+from utils.checkpoint import save_checkpoint, resume
 from utils.class_weight import get_class_weight
 from utils.dataset import Kinetics
 from utils.mean import get_mean, get_std
 from model import resnet
 from model import slowfast
+from model.metric import L2ConstrainedLinear
+from model.msc import SpatialMSC, TemporalMSC, SpatioTemporalMSC
 
 
 def get_arguments():
@@ -28,11 +31,13 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='train a network for action recognition')
     parser.add_argument('config', type=str, help='path of a config file')
+    parser.add_argument('--resume', type=bool, default=False,
+                        help='if you start training from checkpoint')
 
     return parser.parse_args()
 
 
-def train(model, train_loader, criterion, optimizer, device):
+def train(model, train_loader, criterion, optimizer, config, device):
     model.train()
 
     epoch_loss = 0.0
@@ -43,7 +48,12 @@ def train(model, train_loader, criterion, optimizer, device):
         t = t.to(device)
 
         h = model(x)
-        loss = criterion(h, t)
+        if config.msc:
+            loss = 0.0
+            for scaled_h in h:
+                loss += criterion(scaled_h, t)
+        else:
+            loss = criterion(h, t)
 
         optimizer.zero_grad()
         loss.backward()
@@ -160,11 +170,22 @@ def main():
         print('resnet18 will be used as a model.')
         model = resnet.resnet18(num_classes=CONFIG.n_classes)
 
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model.to(device)
-    if device == 'cuda':
-        model = torch.nn.DataParallel(model)  # make parallel
-        torch.backends.cudnn.benchmark = True
+    # metric
+    if CONFIG.metric == 'L2constrain':
+        print('L2constrain metric will be used.')
+        model.fc = L2ConstrainedLinear(
+            model.fc.in_features, model.fc.out_features)
+
+    # multi-scale input
+    if CONFIG.msc == 'Temporal':
+        print('Temporal multi-scale input will be used')
+        model = TemporalMSC(model)
+    elif CONFIG.msc == 'Spatial':
+        print('Spatial multi-scale input will be used')
+        model = SpatialMSC(model)
+    elif CONFIG.msc == 'SpatioTemporal':
+        print('SpatioTemporal multi-scale input will be used')
+        model = SpatioTemporalMSC(model)
 
     # set optimizer, lr_scheduler
     if CONFIG.optimizer == 'Adam':
@@ -198,6 +219,21 @@ def main():
     if CONFIG.optimizer == 'SGD':
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, 'min', patience=CONFIG.lr_patience)
+    else:
+        scheduler = None
+
+    # resume if you want
+    begin_epoch = 0
+    if args.resume:
+        begin_epoch, model, optimizer, scheduler = \
+            resume(CONFIG, model, optimizer, scheduler)
+
+    # send the model to cuda/cpu
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model.to(device)
+    if device == 'cuda':
+        model = torch.nn.DataParallel(model)  # make parallel
+        torch.backends.cudnn.benchmark = True
 
     # criterion for loss
     if CONFIG.class_weight:
@@ -215,10 +251,10 @@ def main():
     best_top1_accuracy = 0.0
     best_top5_accuracy = 0.0
 
-    for epoch in range(CONFIG.max_epoch):
+    for epoch in range(begin_epoch, CONFIG.max_epoch):
         # training
         loss_train = train(
-            model, train_loader, criterion, optimizer, device)
+            model, train_loader, criterion, optimizer, CONFIG, device)
         losses_train.append(loss_train)
 
         # validation
@@ -243,7 +279,11 @@ def main():
             torch.save(
                 model.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
 
-        # save a model per 10 epoch
+        # save checkpoint every 5 epoch
+        if epoch % 5 == 0 and epoch != 0:
+            save_checkpoint(CONFIG, epoch, model, optimizer, scheduler)
+
+        # save a model every 10 epoch
         if epoch % 10 == 0 and epoch != 0:
             torch.save(
                 model.state_dict(), os.path.join(CONFIG.result_path, 'epoch_{}_model.prm'.format(epoch)))

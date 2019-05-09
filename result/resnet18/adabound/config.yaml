@@ -21,6 +21,7 @@ weight_decay: 0.0001   # weight decay
 nesterov: True        # enables Nesterov momentum
 final_lr: 0.1         # final learning rate for AdaBound
 
+dataset_dir: /media/cvrg/ssd2t/video_400_jpg
 train_csv: ./dataset/train.csv
 val_csv: ./dataset/val.csv
 result_path: ./result/resnet18/adabound
