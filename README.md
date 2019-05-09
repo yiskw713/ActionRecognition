@@ -11,6 +11,7 @@
 * PyYAML
 * addict
 * tensorboardX
+* adabound
 
 ## References
 * (3D-ResNets-PyTorch)[https://github.com/kenshohara/3D-ResNets-PyTorch]
