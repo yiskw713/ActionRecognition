@@ -22,7 +22,10 @@ Then you need to convert .mp4 files to .jpeg files.
 You can do that using the code from [this repository](https://github.com/kenshohara/3D-ResNets-PyTorch/tree/work).
 
 ## Training
-If you want to train a model, just run `python train.py ./PATH_TO_CONFIG_FILE`
+If you want to train a model, please run `python utils/build_dataset.py` to make csv_files for training and validation.
+
+Then, just run `python train.py ./PATH_TO_CONFIG_FILE`
+
 For example, when running `python train.py ./result/resnet18/adabound/config.yaml`,
 the configuration described in `./result/resnet18/adabound/config.yaml` will be used .
 
