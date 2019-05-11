@@ -25,7 +25,7 @@ class SpatialMSC(nn.Module):
                     scaled_x = x
                 else:
                     scaled_x = x.transpose(1, 2)    # (N, T, C, H, W)
-                    scaled_x = scaled_x.view(-1, C, H, W)
+                    scaled_x = scaled_x.contiguous().view(-1, C, H, W)
                     scaled_x = F.interpolate(
                         scaled_x, scale_factor=s, mode="bilinear", align_corners=False)
                     _, _, scaled_H, scaled_W = scaled_x.shape
@@ -105,7 +105,7 @@ class SpatioTemporalMSC(nn.Module):
                     sx = x
                 else:
                     sx = x.transpose(1, 2)    # shape => (N, T, C, H, W)
-                    sx = sx.view(-1, C, H, W)
+                    sx = sx.contiguous().view(-1, C, H, W)
                     sx = F.interpolate(
                         sx, scale_factor=s, mode="bilinear", align_corners=False)
                     _, _, scaled_H, scaled_W = sx.shape
@@ -113,7 +113,7 @@ class SpatioTemporalMSC(nn.Module):
                     sx = sx.transpose(1, 2)    # shape => (N, C, T, H, W)
 
                 for t in self.temporal_scales:
-                    if s == 1.0:
+                    if t == 1.0:
                         stx = sx
                     else:
                         start_frame = np.random.randint(0, T - int(t * T) + 1)
