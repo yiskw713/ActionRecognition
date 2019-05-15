@@ -119,11 +119,6 @@ def main():
     # configuration
     CONFIG = Dict(yaml.safe_load(open(args.config)))
 
-    ##################
-    CONFIG.num_workers = 1
-    CONFIG.batch_size = 2
-    #################
-
     # writer
     if CONFIG.writer_flag:
         writer = SummaryWriter(CONFIG.result_path)
