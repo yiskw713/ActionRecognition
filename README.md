@@ -12,6 +12,7 @@
 * addict
 * tensorboardX
 * adabound
+* (accimage)
 
 ## Dataset
 ### Kinetics
