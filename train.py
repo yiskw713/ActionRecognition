@@ -20,6 +20,7 @@ from model import resnet
 from model import slowfast
 from model.metric import L2ConstrainedLinear
 from model.msc import SpatialMSC, TemporalMSC, SpatioTemporalMSC
+from model import resnext
 
 
 def get_arguments():
@@ -87,14 +88,18 @@ def validation(model, val_loader, criterion, config, device):
     top5 = 0.0
 
     with torch.no_grad():
-        for sample in val_loader:
+        for sample in tqdm.tqdm(val_loader, total=len(val_loader)):
             # temporal size is input_frames(default 16) * interger
             x = sample['clip']
             x = x.to(device)
             t = sample['cls_id']
             t = t.to(device)
 
-            h = model(x)
+            if config.msc:
+                h = model.base(x)
+            else:
+                h = model(x)
+
             val_loss += criterion(h, t).item()
             n, topk = accuracy(h, t, topk=(1, 5))
             n_samples += n
@@ -113,6 +118,11 @@ def main():
 
     # configuration
     CONFIG = Dict(yaml.safe_load(open(args.config)))
+
+    ##################
+    CONFIG.num_workers = 1
+    CONFIG.batch_size = 2
+    #################
 
     # writer
     if CONFIG.writer_flag:
@@ -162,13 +172,24 @@ def main():
 
     if CONFIG.model == 'resnet18':
         print(CONFIG.model + ' will be used as a model.')
-        model = resnet.resnet18(num_classes=CONFIG.n_classes)
-    elif CONFIG.model == 'slowfast18':
-        print(CONFIG.model + ' will be used as a model.')
-        model = slowfast.resnet18(class_num=CONFIG.n_classes)
+        model = resnet.generate_model(18, n_classes=CONFIG.n_classes)
+    elif CONFIG.model == 'resnext':
+        print('ResNext101 will be used as a model.')
+        model = resnext.generate_model(101, n_classes=CONFIG.n_classes)
+    elif CONFIG.model == 'slowfast':
+        print('slowfast will be used as a model.')
+        model = slowfast.resnet152(class_num=CONFIG.n_classes)
+    elif CONFIG.model == 'slowfast_nl':
+        if CONFIG.dual_attention:
+            print('slowfast_nl w/ dual attention will be used as a model.')
+            model = slowfast.resnet152_NL(
+                class_num=CONFIG.n_classes, dual_attention=True)
+        else:
+            print('slowfast_nl w/o dual attention will be used as a model.')
+            model = slowfast.resnet152_NL(class_num=CONFIG.n_classes)
     else:
         print('resnet18 will be used as a model.')
-        model = resnet.resnet18(num_classes=CONFIG.n_classes)
+        model = resnet.generate_model(18, n_classes=CONFIG.n_classes)
 
     # metric
     if CONFIG.metric == 'L2constrain':
@@ -225,8 +246,11 @@ def main():
     # resume if you want
     begin_epoch = 0
     if args.resume:
-        begin_epoch, model, optimizer, scheduler = \
-            resume(CONFIG, model, optimizer, scheduler)
+        if os.path.exists(os.path.join(CONFIG.result_path, 'checkpoint.pth')):
+            print('loading the checkpoint...')
+            begin_epoch, model, optimizer, scheduler = resume(
+                CONFIG, model, optimizer, scheduler)
+            print('training will start from {} epoch'.format(begin_epoch))
 
     # send the model to cuda/cpu
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -252,6 +276,7 @@ def main():
     best_top5_accuracy = 0.0
 
     for epoch in range(begin_epoch, CONFIG.max_epoch):
+
         # training
         loss_train = train(
             model, train_loader, criterion, optimizer, CONFIG, device)
@@ -279,9 +304,8 @@ def main():
             torch.save(
                 model.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
 
-        # save checkpoint every 5 epoch
-        if epoch % 5 == 0 and epoch != 0:
-            save_checkpoint(CONFIG, epoch, model, optimizer, scheduler)
+        # save checkpoint every epoch
+        save_checkpoint(CONFIG, epoch, model, optimizer, scheduler)
 
         # save a model every 10 epoch
         if epoch % 10 == 0 and epoch != 0:

@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -15,7 +16,7 @@ class L2ConstrainedLinear(nn.Module):
         super().__init__()
 
         self.alpha = alpha
-        self.fc = nn.Linear(in_channel, n_classes)
+        self.weight = nn.Parameter(torch.FloatTensor(n_classes, in_channel))
 
     def forward(self, x):
         """
@@ -24,5 +25,6 @@ class L2ConstrainedLinear(nn.Module):
 
         x = F.normalize(x, p=2, dim=1)
         x = self.alpha * x
-        x = self.fc(x)
+        x = F.linear(x, F.normalize(self.weight, p=2))
+
         return x

@@ -1,12 +1,36 @@
 import torch
 import numpy as np
 import pandas as pd
+import torchvision
 import os
 from torch.utils.data import Dataset
 from PIL import Image
 
 
-def train_video_loader(video_path, n_frames, input_frames=16):
+def pil_loader(path):
+    # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
+    with path.open('rb') as f:
+        with Image.open(f) as img:
+            return img.convert('RGB')
+
+
+def accimage_loader(path):
+    try:
+        import accimage
+        return accimage.Image(str(path))
+    except IOError:
+        # Potentially a decoding problem, fall back to PIL.Image
+        torchvision.set_image_backend('PIL')
+        return pil_loader(path)
+
+
+def get_default_image_loader():
+    torchvision.set_image_backend('accimage')
+
+    return accimage_loader
+
+
+def train_video_loader(loader, video_path, n_frames, input_frames=16):
     """
     Return sequential 16 frames in video clips.
     A initial frame is randomly decided.
@@ -20,12 +44,13 @@ def train_video_loader(video_path, n_frames, input_frames=16):
     clip = []
     for i in range(start_frame, start_frame + input_frames):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
-        img = Image.open(img_path)
+
+        img = loader(img_path)
         clip.append(img)
     return clip
 
 
-def test_video_loader(video_path, n_frames, input_frames=16):
+def test_video_loader(loader, video_path, n_frames, input_frames=16):
     """
     Return 16 * (n_frames // 16) frames in video clips.
     Ignore the last frames which are indivisible by n_frames.
@@ -39,7 +64,7 @@ def test_video_loader(video_path, n_frames, input_frames=16):
     clip = []
     for i in range(1, n_frames + 1):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
-        img = Image.open(img_path)
+        img = loader(img_path)
         clip.append(img)
     return clip
 
@@ -63,6 +88,7 @@ class Kinetics(Dataset):
 
         self.transform = transform
         self.mode = mode
+        self.loader = get_default_image_loader()
 
     def __len__(self):
         return len(self.df)
@@ -75,10 +101,10 @@ class Kinetics(Dataset):
 
         if self.mode == 'test':
             clip = test_video_loader(
-                video_path, n_frames, self.config.input_frames)
+                self.loader, video_path, n_frames, self.config.input_frames)
         else:
             clip = train_video_loader(
-                video_path, n_frames, self.config.input_frames)
+                self.loader, video_path, n_frames, self.config.input_frames)
 
         if self.transform is not None:
             clip = [self.transform(clip[i]) for i in range(len(clip))]

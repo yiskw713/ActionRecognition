@@ -11,6 +11,7 @@ arXiv: https://arxiv.org/abs/1812.03982
 import torch
 import torch.nn as nn
 from .non_local_embedded_gaussian import NONLocalBlock3D
+from .attention import TemporalAttentionModule, ChannelAttentionModule
 
 
 class Bottleneck(nn.Module):
@@ -59,11 +60,13 @@ class Bottleneck(nn.Module):
 
 
 class SlowFast(nn.Module):
-    def __init__(self, block=Bottleneck, layers=[3, 4, 6, 3], class_num=10, dropout=0.5, non_local=False):
+    def __init__(self, block=Bottleneck, layers=[3, 4, 6, 3], class_num=10,
+                 dropout=0.5, non_local=False, dual_attention=False):
         super(SlowFast, self).__init__()
 
         # if you want to use non-local module. given by list.
         self.non_local = non_local
+        self.dual_attention = dual_attention
 
         self.fast_inplanes = 8
         self.fast_conv1 = nn.Conv3d(3, 8, kernel_size=(5, 7, 7),
@@ -106,6 +109,10 @@ class SlowFast(nn.Module):
         self.slow_res5 = self._make_layer_slow(
             block, 512, layers[3], stride=2, head_conv=3)
 
+        if dual_attention:
+            self.tam = TemporalAttentionModule()
+            self.cam = ChannelAttentionModule()
+
         self.dp = nn.Dropout(dropout)
         self.fc = nn.Linear(self.fast_inplanes + 2048, class_num, bias=False)
 
@@ -130,6 +137,10 @@ class SlowFast(nn.Module):
         x = self.slow_res4(x)
         x = torch.cat([x, lateral[3]], dim=1)
         x = self.slow_res5(x)
+
+        if self.dual_attention:
+            x = self.cam(x)
+
         x = nn.AdaptiveAvgPool3d(1)(x)
         x = x.view(-1, x.size(1))
         return x
@@ -156,6 +167,10 @@ class SlowFast(nn.Module):
         lateral.append(lateral_res4)
 
         res5 = self.fast_res5(res4)
+
+        if self.dual_attention:
+            x = self.tam(x)
+
         x = nn.AdaptiveAvgPool3d(1)(res5)
         x = x.view(-1, x.size(1))
 
@@ -215,13 +230,6 @@ def resnet18(**kwargs):
     return model
 
 
-def resnet50(**kwargs):
-    """Constructs a ResNet-50 model.
-    """
-    model = SlowFast(Bottleneck, [3, 4, 6, 3], **kwargs)
-    return model
-
-
 def resnet101(**kwargs):
     """Constructs a ResNet-101 model.
     """
@@ -236,25 +244,11 @@ def resnet152(**kwargs):
     return model
 
 
-def resnet200(**kwargs):
-    """Constructs a ResNet-200 model.
-    """
-    model = SlowFast(Bottleneck, [3, 24, 36, 3], **kwargs)
-    return model
-
-
 # SlowFast Network with non local module
 def resnet18_NL(**kwargs):
     """Constructs a ResNet-18 model.
     """
     model = SlowFast(Bottleneck, [2, 2, 2, 2], non_local=True, **kwargs)
-    return model
-
-
-def resnet50_NL(**kwargs):
-    """Constructs a ResNet-50 model.
-    """
-    model = SlowFast(Bottleneck, [3, 4, 6, 3], non_local=True, **kwargs)
     return model
 
 
@@ -269,11 +263,4 @@ def resnet152_NL(**kwargs):
     """Constructs a ResNet-152 model.
     """
     model = SlowFast(Bottleneck, [3, 8, 36, 3], non_local=True, **kwargs)
-    return model
-
-
-def resnet200_NL(**kwargs):
-    """Constructs a ResNet-200 model.
-    """
-    model = SlowFast(Bottleneck, [3, 24, 36, 3], non_local=True, **kwargs)
     return model
