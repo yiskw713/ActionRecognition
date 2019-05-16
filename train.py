@@ -269,9 +269,9 @@ def main():
     for epoch in range(begin_epoch, CONFIG.max_epoch):
 
         # training
-        # loss_train = train(
-        #     model, train_loader, criterion, optimizer, CONFIG, device)
-        # losses_train.append(loss_train)
+        loss_train = train(
+            model, train_loader, criterion, optimizer, CONFIG, device)
+        losses_train.append(loss_train)
 
         # validation
         loss_val, top1, top5 = validation(
