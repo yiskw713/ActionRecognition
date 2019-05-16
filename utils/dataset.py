@@ -27,7 +27,7 @@ def get_default_image_loader():
     return accimage_loader
 
 
-def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=None):
+def train_video_loader(loader, video_path, n_frames, input_frames=16):
     """
     Return sequential 16 frames in video clips.
     A initial frame is randomly decided.
@@ -43,15 +43,11 @@ def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
 
         img = loader(img_path)
-
-        if transform is not None:
-            img = transform(img)
-
         clip.append(img)
     return clip
 
 
-def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=None):
+def test_video_loader(loader, video_path, n_frames, input_frames=16):
     """
     Return 16 * (n_frames // 16) frames in video clips.
     Ignore the last frames which are indivisible by n_frames.
@@ -66,10 +62,6 @@ def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=N
     for i in range(1, n_frames + 1):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
         img = loader(img_path)
-
-        if transform is not None:
-            img = transform(img)
-
         clip.append(img)
     return clip
 
@@ -106,10 +98,13 @@ class Kinetics(Dataset):
 
         if self.mode == 'test':
             clip = test_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames, self.transform)
+                self.loader, video_path, n_frames, self.config.input_frames)
         else:
             clip = train_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames, self.transform)
+                self.loader, video_path, n_frames, self.config.input_frames)
+
+        if self.transform is not None:
+            clip = [self.transform(clip[i]) for i in range(len(clip))]
 
         # clip.shape => (C, T, H, W)
         clip = torch.stack(clip, 0).permute(1, 0, 2, 3)
