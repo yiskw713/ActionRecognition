@@ -8,17 +8,14 @@ from PIL import Image
 
 
 def pil_loader(path):
-    # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
-    with path.open('rb') as f:
-        with Image.open(f) as img:
-            return img.convert('RGB')
+    return Image.open(path)
 
 
 def accimage_loader(path):
     try:
         import accimage
-        return accimage.Image(str(path))
-    except IOError:
+        return accimage.Image(path)
+    except ModuleNotFoundError:
         # Potentially a decoding problem, fall back to PIL.Image
         torchvision.set_image_backend('PIL')
         return pil_loader(path)

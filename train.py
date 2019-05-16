@@ -42,7 +42,7 @@ def train(model, train_loader, criterion, optimizer, config, device):
     model.train()
 
     epoch_loss = 0.0
-    for sample in tqdm.tqdm(train_loader, total=len(train_loader)):
+    for sample in train_loader:
         x = sample['clip']
         t = sample['cls_id']
         x = x.to(device)
@@ -88,7 +88,7 @@ def validation(model, val_loader, criterion, config, device):
     top5 = 0.0
 
     with torch.no_grad():
-        for sample in tqdm.tqdm(val_loader, total=len(val_loader)):
+        for sample in val_loader:
             # temporal size is input_frames(default 16) * interger
             x = sample['clip']
             x = x.to(device)
