@@ -4,7 +4,6 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import tqdm
 import yaml
 
 from addict import Dict
@@ -32,8 +31,8 @@ def get_arguments():
     parser = argparse.ArgumentParser(
         description='train a network for action recognition')
     parser.add_argument('config', type=str, help='path of a config file')
-    parser.add_argument('--resume', type=bool, default=False,
-                        help='if you start training from checkpoint')
+    parser.add_argument('--resume', action='store_true',
+                        help='Add --resume option if you start training from checkpoint.')
 
     return parser.parse_args()
 
