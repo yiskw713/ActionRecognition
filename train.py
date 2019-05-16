@@ -94,10 +94,7 @@ def validation(model, val_loader, criterion, config, device):
             t = sample['cls_id']
             t = t.to(device)
 
-            if config.msc:
-                h = model.base(x)
-            else:
-                h = model(x)
+            h = model(x)
 
             val_loss += criterion(h, t).item()
             n, topk = accuracy(h, t, topk=(1, 5))
@@ -272,9 +269,9 @@ def main():
     for epoch in range(begin_epoch, CONFIG.max_epoch):
 
         # training
-        loss_train = train(
-            model, train_loader, criterion, optimizer, CONFIG, device)
-        losses_train.append(loss_train)
+        # loss_train = train(
+        #     model, train_loader, criterion, optimizer, CONFIG, device)
+        # losses_train.append(loss_train)
 
         # validation
         loss_val, top1, top5 = validation(
