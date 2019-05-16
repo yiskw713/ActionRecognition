@@ -7,7 +7,7 @@ metric: False
 attention: False
 
 n_classes: 400
-batch_size: 128
+batch_size: 32
 input_frames: 64
 height: 224
 width: 224
