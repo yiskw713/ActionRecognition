@@ -234,6 +234,13 @@ def main():
     else:
         scheduler = None
 
+    # send the model to cuda/cpu
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model.to(device)
+    if device == 'cuda':
+        model = torch.nn.DataParallel(model)  # make parallel
+        torch.backends.cudnn.benchmark = True
+
     # resume if you want
     begin_epoch = 0
     if args.resume:
@@ -242,13 +249,6 @@ def main():
             begin_epoch, model, optimizer, scheduler = resume(
                 CONFIG, model, optimizer, scheduler)
             print('training will start from {} epoch'.format(begin_epoch))
-
-    # send the model to cuda/cpu
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model.to(device)
-    if device == 'cuda':
-        model = torch.nn.DataParallel(model)  # make parallel
-        torch.backends.cudnn.benchmark = True
 
     # criterion for loss
     if CONFIG.class_weight:
