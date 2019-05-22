@@ -178,6 +178,10 @@ def main():
         else:
             print('slowfast_nl w/o dual attention will be used as a model.')
             model = slowfast.resnet152_NL(class_num=CONFIG.n_classes)
+    elif CONFIG.model == 'slowfast_nl':
+        print('slowfast101_nl w/o dual attention will be used as a model.')
+        model = slowfast.resnet101_NL(
+            class_num=CONFIG.n_classes, dual_attention=False)
     else:
         print('resnet18 will be used as a model.')
         model = resnet.generate_model(18, n_classes=CONFIG.n_classes)
