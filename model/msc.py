@@ -65,6 +65,7 @@ class TemporalMSC(nn.Module):
             for s in self.scales:
                 if s == 1.0:
                     scaled_x = x
+                    scaled_logits.append(self.base(scaled_x))
                 else:
                     start_frame = np.random.randint(0, T - int(s * T) + 1)
                     scaled_x = x[:, :, start_frame:start_frame + int(s * T)]
