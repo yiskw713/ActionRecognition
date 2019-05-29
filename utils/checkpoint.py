@@ -25,10 +25,7 @@ def resume(config, model, optimizer, scheduler=None):
     model.load_state_dict(checkpoint['state_dict'])
 
     # confirm whether the optimizer matches that of checkpoints
-    try:
-        optimizer.load_state_dict(checkpoint['optimizer'])
-    except:
-        print('Optimizers are mismatched.')
+    # optimizer.load_state_dict(checkpoint['optimizer'])
 
     if scheduler is not None and 'scheduler' in checkpoint:
         scheduler.load_state_dict(checkpoint['scheduler'])
