@@ -30,7 +30,7 @@ def get_default_image_loader():
     return accimage_loader
 
 
-def train_video_loader(loader, video_path, n_frames, image_file_format='hdf5', input_frames=16, transform=None):
+def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=None, image_file_format='hdf5'):
     """
     Return sequential 16 frames in video clips.
     A initial frame is randomly decided.
@@ -70,7 +70,7 @@ def train_video_loader(loader, video_path, n_frames, image_file_format='hdf5', i
 
 
 # TODO: fix this code. This doesn't work correctly.
-def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=None):
+def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=None, image_file_format='hdf5'):
     """
     Return 16 * (n_frames // 16) frames in video clips.
     Ignore the last frames which are indivisible by n_frames.
@@ -124,10 +124,14 @@ class Kinetics(Dataset):
 
         if self.mode == 'test':
             clip = test_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames, self.transform)
+                self.loader, video_path, n_frames, self.config.input_frames,
+                self.transform, self.config.image_file_format
+            )
         else:
             clip = train_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames, self.transform)
+                self.loader, video_path, n_frames, self.config.input_frames,
+                self.transform, self.config.image_file_format
+            )
 
         # clip.shape => (C, T, H, W)
         clip = torch.stack(clip, 0).permute(1, 0, 2, 3)
