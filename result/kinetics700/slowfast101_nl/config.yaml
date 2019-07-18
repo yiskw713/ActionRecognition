@@ -23,7 +23,7 @@ weight_decay: 0.001   # weight decay for SGD
 nesterov: True        # enables Nesterov momentum
 final_lr: 0.1         # final learning rate for AdaBound
 
-dataset_dir: /groups1/gaa50031/aaa10329ah/datasets/kinetics/videos_700_hdf5
+dataset_dir: /groups1/gaa50131/dataset/kinetics/videos_700_hdf5
 image_file_format: hdf5
 train_csv: ./dataset/kinetics_700_train.csv
 val_csv: ./dataset/kinetics_700_val.csv
