@@ -17,6 +17,9 @@ def get_arguments():
     parser.add_argument(
         'dataset_dir', type=str, help='path of the dataset directory')
     parser.add_argument(
+        '--dataset', type=str, default='kinetics400', help='dataset name(options: kinetics400, kinetics700'
+    )
+    parser.add_argument(
         '--orig_train_csv', type=str, default='./dataset/original/kinetics-400_train.csv', help='path to the original kinetics dataset train csv')
     parser.add_argument(
         '--orig_val_csv', type=str, default='./dataset/original/kinetics-400_val.csv', help='path to the original kinetics dataset val csv')
@@ -32,7 +35,10 @@ def main():
     df_train = pd.read_csv(args.orig_train_csv)
     df_val = pd.read_csv(args.orig_val_csv)
 
-    class_label_map = get_class_label_map()
+    if args.dataset == 'kinetics700':
+        class_label_map = get_class_label_map(n_classes=700)
+    else:
+        class_label_map = get_class_label_map(n_classes=400)
 
     for df in [df_train, df_val]:
         path = []
