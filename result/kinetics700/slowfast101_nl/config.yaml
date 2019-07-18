@@ -25,6 +25,6 @@ final_lr: 0.1         # final learning rate for AdaBound
 
 dataset_dir: /groups1/gaa50131/dataset/kinetics/videos_700_hdf5
 image_file_format: hdf5
-train_csv: ./dataset/kinetics_700_train.csv
-val_csv: ./dataset/kinetics_700_val.csv
+train_csv: ./dataset/kinetics700_train.csv
+val_csv: ./dataset/kinetics700_val.csv
 result_path: ./result/kinetics700/slowfast101_nl
