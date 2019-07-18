@@ -306,28 +306,29 @@ def main():
         top5_accuracy.append(top5)
 
         # save a model if topk accuracy is higher than ever
+        # save base models, NOT DataParalled models
         if best_top1_accuracy < top1_accuracy[-1]:
             best_top1_accuracy = top1_accuracy[-1]
             torch.save(
-                model.state_dict(), os.path.join(CONFIG.result_path, 'best_top1_accuracy_model.prm'))
+                model.module.state_dict(), os.path.join(CONFIG.result_path, 'best_top1_accuracy_model.prm'))
 
         if best_top5_accuracy < top5_accuracy[-1]:
             best_top5_accuracy = top5_accuracy[-1]
             torch.save(
-                model.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
+                model.module.state_dict(), os.path.join(CONFIG.result_path, 'best_top5_accuracy_model.prm'))
 
         # save checkpoint every epoch
         save_checkpoint(CONFIG, epoch, model, optimizer, scheduler)
 
         # save a model every 10 epoch
+        # save base models, NOT DataParalled models
         if epoch % 10 == 0 and epoch != 0:
             torch.save(
-                model.state_dict(), os.path.join(CONFIG.result_path, 'epoch_{}_model.prm'.format(epoch)))
+                model.module.state_dict(), os.path.join(CONFIG.result_path, 'epoch_{}_model.prm'.format(epoch)))
 
         # tensorboardx
         if writer is not None:
             writer.add_scalar("loss_train", losses_train[-1], epoch)
-
             writer.add_scalar('loss_val', losses_val[-1], epoch)
             writer.add_scalars("iou", {
                 'top1_accuracy': top1_accuracy[-1],
@@ -351,8 +352,9 @@ def main():
             .format(epoch, losses_train[-1], losses_val[-1], top1_accuracy[-1], top5_accuracy[-1])
         )
 
+    # save base models, NOT DataParalled models
     torch.save(
-        model.state_dict(), os.path.join(CONFIG.result_path, 'final_model.prm'))
+        model.module.state_dict(), os.path.join(CONFIG.result_path, 'final_model.prm'))
 
 
 if __name__ == '__main__':
