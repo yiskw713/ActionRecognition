@@ -90,9 +90,9 @@ def main():
     df_val = df_val[df_val['n_frames'] >= 150]
 
     df_train.to_csv(
-        os.path.join(args.save_path, 'kinetics_400_train.csv'), index=None)
+        os.path.join(args.save_path, args.dataset + '_train.csv'), index=None)
     df_val.to_csv(
-        os.path.join(args.save_path, 'kinetics_400_val.csv'), index=None)
+        os.path.join(args.save_path, args.dataset + '_val.csv'), index=None)
 
 
 if __name__ == '__main__':
