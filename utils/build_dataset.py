@@ -1,6 +1,7 @@
 import glob
 import h5py
 import os
+import sys
 import pandas as pd
 import argparse
 from class_label_map import get_class_label_map
@@ -37,8 +38,11 @@ def main():
 
     if args.dataset == 'kinetics700':
         class_label_map = get_class_label_map(n_classes=700)
-    else:
+    elif args.dataset == 'kinetics400':
         class_label_map = get_class_label_map(n_classes=400)
+    else:
+        print('invalid arguments: --dataset (options: kinetics400, kinetics700)')
+        sys.exit(1)
 
     for df in [df_train, df_val]:
         path = []
@@ -57,7 +61,9 @@ def main():
         del df['time_start']
         del df['time_end']
         del df['split']
-        del df['is_cc']
+
+        if args.dataset == 'kinetics400':
+            del df['is_cc']
 
         frames = []
         for i in range(len(df)):
