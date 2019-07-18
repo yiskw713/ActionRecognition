@@ -734,7 +734,7 @@ def get_class_label_map(n_classes=400):
             'massaging feet': 324,
             'massaging legs': 325,
             'massaging neck': 326,
-            'massaging person's head': 327,
+            'massaging person\'s head': 327,
             'metal detecting': 328,
             'milking cow': 329,
             'milking goat': 330,
