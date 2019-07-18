@@ -56,6 +56,7 @@ nesterov: True        # enables Nesterov momentum
 final_lr: 0.1         # final learning rate for AdaBound
 
 dataset_dir: /xxxx/xxxx/xxxxx/xxxxx
+image_file_format: hdf5 # options: hdf5, jpg, png
 train_csv: ./dataset/train.csv
 val_csv: ./dataset/val.csv
 result_path: ./result/resnet18/adabound

@@ -1,8 +1,11 @@
-import torch
+import h5py
+import io
 import numpy as np
-import pandas as pd
-import torchvision
 import os
+import pandas as pd
+import sys
+import torch
+import torchvision
 from torch.utils.data import Dataset
 from PIL import Image
 
@@ -27,30 +30,46 @@ def get_default_image_loader():
     return accimage_loader
 
 
-def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=None):
+def train_video_loader(loader, video_path, n_frames, image_file_format='hdf5', input_frames=16, transform=None):
     """
     Return sequential 16 frames in video clips.
     A initial frame is randomly decided.
     Args:
         video_path: path for the video.
         n_frames: the number of frames of the video
+        image_file_format: image file format you want to use. options: jpg, png, hdf5
         input_frames: the number of frames you want to input to the model. (default 16)
     """
 
     start_frame = np.random.randint(1, n_frames - input_frames + 1)
-    clip = []
-    for i in range(start_frame, start_frame + input_frames):
-        img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
 
-        img = loader(img_path)
+    if (image_file_format == 'jpg') or (image_file_format == 'png'):
+        clip = []
+        for i in range(start_frame, start_frame + input_frames):
+            img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
+            img = loader(img_path)
 
-        if transform is not None:
-            img = transform(img)
+            if transform is not None:
+                img = transform(img)
 
-        clip.append(img)
+            clip.append(img)
+    elif image_file_format == 'hdf5':
+        with h5py.File(video_path, 'r') as f:
+            video = f['video']
+            clip = []
+            for i in range(start_frame, start_frame + input_frames):
+                img = Image.open(io.BytesIO(video[i]))
+
+                if transform is not None:
+                    img = transform(img)
+                clip.append(img)
+    else:
+        print('You have to choose "jpg", "png" or "hdf5" as image file format.')
+        sys.exit(1)
     return clip
 
 
+# TODO: fix this code. This doesn't work correctly.
 def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=None):
     """
     Return 16 * (n_frames // 16) frames in video clips.
@@ -66,7 +85,6 @@ def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=N
     for i in range(1, n_frames + 1):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
         img = loader(img_path)
-
         if transform is not None:
             img = transform(img)
 

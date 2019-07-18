@@ -1,6 +1,8 @@
 import adabound
 import argparse
 import os
+import pandas as pd
+import sys
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -170,6 +172,9 @@ def main():
     elif CONFIG.model == 'slowfast':
         print('slowfast will be used as a model.')
         model = slowfast.resnet152(class_num=CONFIG.n_classes)
+    elif CONFIG.model == 'slowfast101_nl':
+        print('slowfast101 with non local network will be used as a model.')
+        model = slowfast.resnet101_NL(class_num=CONFIG.n_classes)
     elif CONFIG.model == 'slowfast_nl':
         if CONFIG.dual_attention:
             print('slowfast_nl w/ dual attention will be used as a model.')
@@ -244,15 +249,27 @@ def main():
     if device == 'cuda':
         model = torch.nn.DataParallel(model)  # make parallel
         torch.backends.cudnn.benchmark = True
+    else:
+        print('You have to use GPUs because training 3DCNN is computationally expensive.')
+        sys.exit(1)
 
     # resume if you want
     begin_epoch = 0
+    log = None
     if args.resume:
         if os.path.exists(os.path.join(CONFIG.result_path, 'checkpoint.pth')):
             print('loading the checkpoint...')
             begin_epoch, model, optimizer, scheduler = resume(
                 CONFIG, model, optimizer, scheduler)
             print('training will start from {} epoch'.format(begin_epoch))
+        if os.path.exists(os.path.join(CONFIG.result_path, 'log.csv')):
+            log = pd.read_csv(os.path.join(CONFIG.result_path, 'log.csv'))
+
+    # generate log when you start training from scratch
+    if log is None:
+        log = pd.DataFrame(
+            columns=['epoch', 'lr', 'train_loss', 'val_loss', 'acc@1', 'acc@5']
+        )
 
     # criterion for loss
     if CONFIG.class_weight:
@@ -315,6 +332,19 @@ def main():
             writer.add_scalars("iou", {
                 'top1_accuracy': top1_accuracy[-1],
                 'top5_accuracy': top5_accuracy[-1]}, epoch)
+
+        # write logs to dataframe and csv file
+        tmp = pd.Series([
+            epoch,
+            scheduler.get_lr()[0],
+            losses_train[-1],
+            losses_val[-1],
+            top1_accuracy[-1],
+            top5_accuracy[-1],
+        ], index=log.columns)
+
+        log = log.append(tmp, ignore_index=True)
+        log.to_csv(os.path.join(CONFIG.result_path, 'log.csv'), index=False)
 
         print(
             'epoch: {}\tloss train: {:.5f}\tloss val: {:.5f}\ttop1_accuracy: {:.5f}\ttop5_accuracy: {:.5f}'
