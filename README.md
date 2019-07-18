@@ -19,7 +19,7 @@
 
 You can download videos in Kinetics with [the official donwloader](https://github.com/activitynet/ActivityNet/tree/master/Crawler/Kinetics).
 
-Then you need to convert .mp4 files to .jpeg files.
+Then you need to convert .mp4 files to .jpeg files or .hdf5 files.
 You can do that using the code from [this repository](https://github.com/kenshohara/3D-ResNets-PyTorch/tree/work).
 
 ## Training
