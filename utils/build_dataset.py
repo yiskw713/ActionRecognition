@@ -1,4 +1,5 @@
 import glob
+import h5py
 import os
 import pandas as pd
 import argparse
@@ -58,8 +59,14 @@ def main():
 
             # confirm if video directory and n_frames file exist or not.
             if os.path.exists(video_dir):
+                # if you have videos in jpg format, count the number of jpg files.
                 videos = glob.glob(os.path.join(video_dir, '*.jpg'))
                 frames.append(len(videos))
+            elif os.path.exists(os.path.join(video_dir, '.hdf5')):
+                # if you have videos in hdf5 format, return the number of frames of a video file.
+                with h5py.File(os.path.join(video_dir, '.hdf5'), 'r') as f:
+                    video = f['video']
+                    frames.append(len(video))
             else:
                 # Videos which have few or no frames will be removed afterwards
                 frames.append(0)
