@@ -1,11 +1,12 @@
+import glob
 import h5py
 import io
-import numpy as np
-import os
-import pandas as pd
-import sys
 import torch
+import numpy as np
+import pandas as pd
 import torchvision
+import os
+import sys
 from torch.utils.data import Dataset
 from PIL import Image
 
@@ -30,20 +31,23 @@ def get_default_image_loader():
     return accimage_loader
 
 
-def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=None, image_file_format='hdf5'):
+def train_video_loader(
+        loader, video_path, input_frames=16, transform=None, image_file_format='hdf5'):
     """
     Return sequential 16 frames in video clips.
     A initial frame is randomly decided.
     Args:
         video_path: path for the video.
-        n_frames: the number of frames of the video
-        image_file_format: image file format you want to use. options: jpg, png, hdf5
         input_frames: the number of frames you want to input to the model. (default 16)
+        image_file_format: 'jpg', 'png' or 'hdf5'
     """
 
-    start_frame = np.random.randint(1, n_frames - input_frames + 1)
-
     if (image_file_format == 'jpg') or (image_file_format == 'png'):
+        # count the number of frames
+        n_frames = len(glob.glob(os.path.join(
+            video_path, '*.{}'.format(image_file_format))))
+        start_frame = np.random.randint(1, n_frames - input_frames + 1)
+
         clip = []
         for i in range(start_frame, start_frame + input_frames):
             img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
@@ -56,6 +60,8 @@ def train_video_loader(loader, video_path, n_frames, input_frames=16, transform=
     elif image_file_format == 'hdf5':
         with h5py.File(video_path, 'r') as f:
             video = f['video']
+            n_frames = len(video)
+            start_frame = np.random.randint(1, n_frames - input_frames + 1)
             clip = []
             for i in range(start_frame, start_frame + input_frames):
                 img = Image.open(io.BytesIO(video[i]))
@@ -85,6 +91,7 @@ def test_video_loader(loader, video_path, n_frames, input_frames=16, transform=N
     for i in range(1, n_frames + 1):
         img_path = os.path.join(video_path, 'image_{:05d}.jpg'.format(i))
         img = loader(img_path)
+
         if transform is not None:
             img = transform(img)
 
@@ -120,18 +127,16 @@ class Kinetics(Dataset):
         video_path = os.path.join(
             self.config.dataset_dir, self.df.iloc[idx]['video'])
         cls_id = torch.tensor(int(self.df.iloc[idx]['class_id'])).long()
-        n_frames = int(self.df.iloc[idx]['n_frames'])
 
         if self.mode == 'test':
+            # TODO: this doesn't work properly
             clip = test_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames,
-                self.transform, self.config.image_file_format
-            )
+                self.loader, video_path, self.config.input_frames,
+                self.transform, self.config.image_file_format)
         else:
             clip = train_video_loader(
-                self.loader, video_path, n_frames, self.config.input_frames,
-                self.transform, self.config.image_file_format
-            )
+                self.loader, video_path, self.config.input_frames,
+                self.transform, self.config.image_file_format)
 
         # clip.shape => (C, T, H, W)
         clip = torch.stack(clip, 0).permute(1, 0, 2, 3)

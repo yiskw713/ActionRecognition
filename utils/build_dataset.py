@@ -1,7 +1,5 @@
 import glob
-import h5py
 import os
-import sys
 import pandas as pd
 import argparse
 from class_label_map import get_class_label_map
@@ -18,8 +16,7 @@ def get_arguments():
     parser.add_argument(
         'dataset_dir', type=str, help='path of the dataset directory')
     parser.add_argument(
-        '--dataset', type=str, default='kinetics400', help='dataset name(options: kinetics400, kinetics700'
-    )
+        'n_classes', type=int, default=400, help='the number of classes in kinetics dataset')
     parser.add_argument(
         '--orig_train_csv', type=str, default='./dataset/original/kinetics-400_train.csv', help='path to the original kinetics dataset train csv')
     parser.add_argument(
@@ -36,13 +33,7 @@ def main():
     df_train = pd.read_csv(args.orig_train_csv)
     df_val = pd.read_csv(args.orig_val_csv)
 
-    if args.dataset == 'kinetics700':
-        class_label_map = get_class_label_map(n_classes=700)
-    elif args.dataset == 'kinetics400':
-        class_label_map = get_class_label_map(n_classes=400)
-    else:
-        print('invalid arguments: --dataset (options: kinetics400, kinetics700)')
-        sys.exit(1)
+    class_label_map = get_class_label_map(n_classes=args.n_classes)
 
     for df in [df_train, df_val]:
         path = []
@@ -61,38 +52,30 @@ def main():
         del df['time_start']
         del df['time_end']
         del df['split']
-
-        if args.dataset == 'kinetics400':
+        if 'is_cc' in df.columns:
             del df['is_cc']
 
-        frames = []
         for i in range(len(df)):
             video_dir = os.path.join(args.dataset_dir, df.iloc[i]['video'])
 
             # confirm if video directory and n_frames file exist or not.
             if os.path.exists(video_dir):
-                # if you have videos in jpg format, count the number of jpg files.
-                videos = glob.glob(os.path.join(video_dir, '*.jpg'))
-                frames.append(len(videos))
-            elif os.path.exists(os.path.join(video_dir, '.hdf5')):
-                # if you have videos in hdf5 format, return the number of frames of a video file.
-                with h5py.File(os.path.join(video_dir, '.hdf5'), 'r') as f:
-                    video = f['video']
-                    frames.append(len(video))
+                n_f = glob.glob(os.path.join(video_dir, '*'))
+                if len(n_f) > 128:
+                    continue
+                else:
+                    # remove videos which have relatively few frames
+                    df.drop(i)
+            elif os.path.exists(video_dir + '.hdf5'):
+                continue
             else:
-                # Videos which have few or no frames will be removed afterwards
-                frames.append(0)
-
-        df['n_frames'] = frames
-
-    # remove videos which have only few frames or no frames
-    df_train = df_train[df_train['n_frames'] >= 150]
-    df_val = df_val[df_val['n_frames'] >= 150]
+                # remove videos which do not exist
+                df.drop(i)
 
     df_train.to_csv(
-        os.path.join(args.save_path, args.dataset + '_train.csv'), index=None)
+        os.path.join(args.save_path, 'kinetics_{}_train.csv'.format(args.n_classes)), index=None)
     df_val.to_csv(
-        os.path.join(args.save_path, args.dataset + '_val.csv'), index=None)
+        os.path.join(args.save_path, 'kinetics_{}_val.csv'.format(args.n_classes)), index=None)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+import sys
+
 
 def get_class_label_map(n_classes=400):
 
@@ -404,8 +406,7 @@ def get_class_label_map(n_classes=400):
             'yoga': 398,
             'zumba': 399
         }
-
-    if n_classes == 700:
+    elif n_classes == 700:
         class_label_map = {
             'abseiling': 0,
             'acting in play': 1,
@@ -1108,5 +1109,8 @@ def get_class_label_map(n_classes=400):
             'yoga': 698,
             'zumba': 699
         }
+    else:
+        print("You chose the inappropriate number of classes")
+        sys.exit(1)
 
     return class_label_map
